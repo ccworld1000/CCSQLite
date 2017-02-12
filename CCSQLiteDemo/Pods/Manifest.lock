@@ -1,0 +1,18 @@
+PODS:
+  - CCSQLite (1.0.0):
+    - CCSQLite/standard (= 1.0.0)
+  - CCSQLite/standard (1.0.0)
+
+DEPENDENCIES:
+  - CCSQLite (from `..`)
+
+EXTERNAL SOURCES:
+  CCSQLite:
+    :path: ".."
+
+SPEC CHECKSUMS:
+  CCSQLite: a7496ac0a2cccfa02a2ab23feb4f5e981923ffe5
+
+PODFILE CHECKSUM: fd14c97eea24d220b944c85df7931d42124c874c
+
+COCOAPODS: 1.0.1
