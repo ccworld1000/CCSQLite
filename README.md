@@ -1,3 +1,21 @@
+###### CCSQLite for iOS && OSX (A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC))
+=======================
+[![Apps Using](https://img.shields.io/cocoapods/at/CCSQLite.svg?label=Apps%20Using%20CCSQLite&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite) [![Downloads](https://img.shields.io/cocoapods/dt/CCSQLite.svg?label=Total%20Downloads&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite)
+
+[![Platform](https://img.shields.io/badge/platforms-iOS%20%7C%20OSX-orange.svg)](https://github.com/ccworld1000/CCSQLite.git)
+[![Languages](https://img.shields.io/badge/languages-ObjC-orange.svg)](https://github.com/ccworld1000/CCSQLite)
+
+[![Version](https://img.shields.io/cocoapods/v/CCSQLite.svg)](https://github.com/ccworld1000/CCSQLite.git)
+[![License](https://img.shields.io/cocoapods/l/CCSQLite.svg)](https://github.com/ccworld1000/CCSQLite/blob/master/LICENSE/LICENSE.CCSQLite.txt)
+
+
+support MAC OSX and iOS
+
+[https://github.com/ccworld1000/CCSQLite.git](https://github.com/ccworld1000/CCSQLite.git)
+
+##bug 
+Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
+
 ***
 # CCSQLite
 ***
@@ -25,7 +43,7 @@ when i wirte "HSCache [cache hanlde]", i want to chose FMDB or YapDatabase, but 
 
 # Change
 ***
-![HSFont HSFontMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
+![CCSQLite CCSQLiteMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
 ***
 # Usage && Migrate
@@ -36,6 +54,13 @@ when i wirte "HSCache [cache hanlde]", i want to chose FMDB or YapDatabase, but 
 [more detail](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
 ***
+
+# demo
+###see CCSQLiteDemo/
+
+###iOS CCSQLiteiOSDemo
+
+###OSX CCSQLiteOSXDemo
 
 # MIT License
 ***

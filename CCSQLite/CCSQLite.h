@@ -92,22 +92,7 @@ typedef int(^CCExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary);
 #pragma clang diagnostic ignored "-Wobjc-interface-ivars"
 
 
-@interface CCSQLite : NSObject  {
-    
-    void*               _db;
-    NSString*           _databasePath;
-
-    BOOL                _shouldCacheStatements;
-    BOOL                _isExecutingStatement;
-    BOOL                _inTransaction;
-    NSTimeInterval      _maxBusyRetryTimeInterval;
-    NSTimeInterval      _startBusyRetryTime;
-    
-    NSMutableSet        *_openResultSets;
-    NSMutableSet        *_openFunctions;
-    
-    NSDateFormatter     *_dateFormat;
-}
+@interface CCSQLite : NSObject  
 
 ///-----------------
 /// @name Properties

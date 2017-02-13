@@ -18,7 +18,21 @@
 #import <sqlite3.h>
 #endif
 
-@interface CCSQLite ()
+@interface CCSQLite () {
+    void*               _db;
+    NSString*           _databasePath;
+    
+    BOOL                _shouldCacheStatements;
+    BOOL                _isExecutingStatement;
+    BOOL                _inTransaction;
+    NSTimeInterval      _maxBusyRetryTimeInterval;
+    NSTimeInterval      _startBusyRetryTime;
+    
+    NSMutableSet        *_openResultSets;
+    NSMutableSet        *_openFunctions;
+    
+    NSDateFormatter     *_dateFormat;
+}
 
 - (CCResultSet *)executeQuery:(NSString *)sql withArgumentsInArray:(NSArray*)arrayArgs orDictionary:(NSDictionary *)dictionaryArgs orVAList:(va_list)args;
 - (BOOL)executeUpdate:(NSString*)sql error:(NSError**)outErr withArgumentsInArray:(NSArray*)arrayArgs orDictionary:(NSDictionary *)dictionaryArgs orVAList:(va_list)args;
@@ -26,11 +40,6 @@
 @end
 
 @implementation CCSQLite
-@synthesize cachedStatements=_cachedStatements;
-@synthesize logsErrors=_logsErrors;
-@synthesize crashOnErrors=_crashOnErrors;
-@synthesize checkedOut=_checkedOut;
-@synthesize traceExecution=_traceExecution;
 
 #pragma mark CCSQLite instantiation and deallocation
 
