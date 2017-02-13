@@ -45,6 +45,12 @@ Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
 ***
 ![HSFont HSFontMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
+## Podfile
+
+```ruby
+pod 'CCSQLite'
+```
+
 ***
 # 用法 && 迁移
 ***

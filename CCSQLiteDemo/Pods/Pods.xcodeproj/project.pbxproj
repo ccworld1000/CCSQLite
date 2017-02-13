@@ -8,33 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		0353DF852E2B98AAD58A1C7A540A7796 /* CCSQLiteQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B57248C271CA543CF83A563E1B7BA1C7 /* CCSQLiteQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		03B1BC8B3849AC609C1E63521343C23A /* CCSQLitePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C5DE93BE1592B4894010D0911926C /* CCSQLitePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		13C2D85C8E585C4D13EA07040EC011BB /* CCSQLite-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B8BB5920AF0E3299DFB2B5AB08D396 /* CCSQLite-iOS-dummy.m */; };
+		04C9BB3BA070C30CD05AEAC14D0C5E1B /* CCStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D04D049769EFE309D78E6E7C59BAFEB /* CCStatement.m */; };
 		1A1BB3FA0D2298B3A115D16EF332278F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EEDD58EC35A4E9347CB06714F7040C /* Foundation.framework */; };
-		1CD3F80DB8F40B2A180094277D61ADAD /* CCSQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D809F1A6051B9B7990F44C6E11027B /* CCSQLite.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		1EB13AE254127DB0CF51DE5A5BCA179D /* CCSQLitePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DF6EE41A281A45A5911793C49777FB7 /* CCSQLitePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1F0C3445321E37821B4562C8CCF80E62 /* CCStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D04D049769EFE309D78E6E7C59BAFEB /* CCStatement.m */; };
+		36967ECDD7B87EBA9901624401B5AEB9 /* CCSQLiteQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 590328F00E27D5CB18AC262D08E4F7EE /* CCSQLiteQueue.m */; };
 		37FC0F288A053369D35A27E29BEABFB4 /* CCStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = FE840D5626DCE118B92027DFF0AD4509 /* CCStatement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B2A4A3C749CB1CD05DEDBAEB43E0BC6 /* CCResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B75D8AAAAC91C6B370A237A65D24F84 /* CCResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4C2FF402A60300B03E7B743C75CA6496 /* CCResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68ADED6EDDD9F5B4A58951A77CAEEE18 /* CCResultSet.m */; };
+		51CC567F7F4D663B8F6DF5230B7D8B6E /* CCSQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D809F1A6051B9B7990F44C6E11027B /* CCSQLite.m */; };
 		582F6494E47AFB7C0B119DC15CFFB7D1 /* Pods-CCSQLiteOSXDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3090C2ACE46BF6A880B2079C1CE1B25C /* Pods-CCSQLiteOSXDemo-dummy.m */; };
+		59F38550660486B3EFC2ED5F9D9709DC /* CCSQLiteQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 590328F00E27D5CB18AC262D08E4F7EE /* CCSQLiteQueue.m */; };
 		65CBDC27A5811F386C3E09B233C5D686 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDAA23DDA8E082FC77E38FA01601C8F /* Cocoa.framework */; };
-		69E2E7F5D7BC97E5A6842B34FAEF09C7 /* CCSQLiteQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 590328F00E27D5CB18AC262D08E4F7EE /* CCSQLiteQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		7E6F12EEDAFF75D1CA387FD3DBCD413C /* CCStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D04D049769EFE309D78E6E7C59BAFEB /* CCStatement.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		695AF91E28316C8F29C161E289223E27 /* CCSQLitePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C5DE93BE1592B4894010D0911926C /* CCSQLitePool.m */; };
+		7DFD6938D11526A47B0186BD0AFD227F /* CCSQLite-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B8BB5920AF0E3299DFB2B5AB08D396 /* CCSQLite-iOS-dummy.m */; };
 		820F4869A3AD222114A6F09FEBB0743C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDAA23DDA8E082FC77E38FA01601C8F /* Cocoa.framework */; };
 		86C3586FE2B34ABB83969856CF500392 /* CCResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B75D8AAAAC91C6B370A237A65D24F84 /* CCResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B36480C28FFE32015B5D014883FB6EE /* CCSQLite.h in Headers */ = {isa = PBXBuildFile; fileRef = B9C27B5D3387B407C4BFB4D3E844DF63 /* CCSQLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B6A2C70D0FBB9B57DAB714CF0C6D761 /* CCSQLite.h in Headers */ = {isa = PBXBuildFile; fileRef = B9C27B5D3387B407C4BFB4D3E844DF63 /* CCSQLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		941421C6CE36B9417B3864A9C1324CC8 /* CCResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68ADED6EDDD9F5B4A58951A77CAEEE18 /* CCResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		936AB97567DD635A2AC41E8523C77726 /* CCSQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D809F1A6051B9B7990F44C6E11027B /* CCSQLite.m */; };
 		95D5734A970F9BBC28B9D270D80DDF7C /* Pods-CCSQLiteiOSDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3775CF4EE1F07C7D1FF922CBC4DDCB5 /* Pods-CCSQLiteiOSDemo-dummy.m */; };
 		9DC31A4B4D4BAB8C78A6A2738B2DE0F5 /* CCSQLitePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DF6EE41A281A45A5911793C49777FB7 /* CCSQLitePool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A88C27B171645AB6C3D66B6CB340F0D8 /* CCSQLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D809F1A6051B9B7990F44C6E11027B /* CCSQLite.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A5669094882246BFC252FDCB52D0D15A /* CCSQLitePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C5DE93BE1592B4894010D0911926C /* CCSQLitePool.m */; };
 		A8CF65DDC75345808D46CFC98CE7D2DC /* CCStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = FE840D5626DCE118B92027DFF0AD4509 /* CCStatement.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AA9BA901A1AE2477323AD7949A74BD69 /* CCStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D04D049769EFE309D78E6E7C59BAFEB /* CCStatement.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		B41465BC04CB123054142559A9DD971F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EEDD58EC35A4E9347CB06714F7040C /* Foundation.framework */; };
-		B5E1D8AF40B32F28A4BCDF93C75BDB8D /* CCSQLiteQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 590328F00E27D5CB18AC262D08E4F7EE /* CCSQLiteQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		B66DBC919B33EB49C2BC3773B04DB5DD /* CCSQLiteQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B57248C271CA543CF83A563E1B7BA1C7 /* CCSQLiteQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BDD909D81CF8FB9BC3AF899B62BC9052 /* CCSQLite-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E0A1A7A25B1B8AEDB9F5E76D9E3F25 /* CCSQLite-OSX-dummy.m */; };
-		EA563402C36837B60D9199395CB58BD1 /* CCResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68ADED6EDDD9F5B4A58951A77CAEEE18 /* CCResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		EF0BEFFD7C75C37EB014ED5DD7FFB575 /* CCSQLitePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C5DE93BE1592B4894010D0911926C /* CCSQLitePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CDD39EC32FF5C6E90FFA9F3A85DFA270 /* CCSQLite-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E0A1A7A25B1B8AEDB9F5E76D9E3F25 /* CCSQLite-OSX-dummy.m */; };
+		E173B0868429228D4669ADD9BFA5C838 /* CCResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 68ADED6EDDD9F5B4A58951A77CAEEE18 /* CCResultSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,7 +307,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0399ECC77563D11A7BB65C072226054D /* Build configuration list for PBXNativeTarget "CCSQLite-iOS" */;
 			buildPhases = (
-				1172956A31FFD7C555D9FEA1B8ECB7CF /* Sources */,
+				701DC17174DD636709EAAE768586891E /* Sources */,
 				6053E3B8FA68F95DF4C98D923A5197D1 /* Frameworks */,
 				071BC6FCD5D165ED1E1B951EC62046CC /* Headers */,
 			);
@@ -341,7 +341,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A7950D69A00B6CFE636366D676CF5AD4 /* Build configuration list for PBXNativeTarget "CCSQLite-OSX" */;
 			buildPhases = (
-				C44B47C59C71ED87DF81D88844908637 /* Sources */,
+				B4143CBC65919C4F788C1D44B4A9E03D /* Sources */,
 				52583CF16A7DCC144C2260E7C2FC8773 /* Frameworks */,
 				46A666C169E947B096053B8D5639AABD /* Headers */,
 			);
@@ -401,16 +401,16 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1172956A31FFD7C555D9FEA1B8ECB7CF /* Sources */ = {
+		701DC17174DD636709EAAE768586891E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA563402C36837B60D9199395CB58BD1 /* CCResultSet.m in Sources */,
-				13C2D85C8E585C4D13EA07040EC011BB /* CCSQLite-iOS-dummy.m in Sources */,
-				A88C27B171645AB6C3D66B6CB340F0D8 /* CCSQLite.m in Sources */,
-				EF0BEFFD7C75C37EB014ED5DD7FFB575 /* CCSQLitePool.m in Sources */,
-				B5E1D8AF40B32F28A4BCDF93C75BDB8D /* CCSQLiteQueue.m in Sources */,
-				7E6F12EEDAFF75D1CA387FD3DBCD413C /* CCStatement.m in Sources */,
+				4C2FF402A60300B03E7B743C75CA6496 /* CCResultSet.m in Sources */,
+				7DFD6938D11526A47B0186BD0AFD227F /* CCSQLite-iOS-dummy.m in Sources */,
+				51CC567F7F4D663B8F6DF5230B7D8B6E /* CCSQLite.m in Sources */,
+				695AF91E28316C8F29C161E289223E27 /* CCSQLitePool.m in Sources */,
+				36967ECDD7B87EBA9901624401B5AEB9 /* CCSQLiteQueue.m in Sources */,
+				1F0C3445321E37821B4562C8CCF80E62 /* CCStatement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,16 +430,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C44B47C59C71ED87DF81D88844908637 /* Sources */ = {
+		B4143CBC65919C4F788C1D44B4A9E03D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				941421C6CE36B9417B3864A9C1324CC8 /* CCResultSet.m in Sources */,
-				BDD909D81CF8FB9BC3AF899B62BC9052 /* CCSQLite-OSX-dummy.m in Sources */,
-				1CD3F80DB8F40B2A180094277D61ADAD /* CCSQLite.m in Sources */,
-				03B1BC8B3849AC609C1E63521343C23A /* CCSQLitePool.m in Sources */,
-				69E2E7F5D7BC97E5A6842B34FAEF09C7 /* CCSQLiteQueue.m in Sources */,
-				AA9BA901A1AE2477323AD7949A74BD69 /* CCStatement.m in Sources */,
+				E173B0868429228D4669ADD9BFA5C838 /* CCResultSet.m in Sources */,
+				CDD39EC32FF5C6E90FFA9F3A85DFA270 /* CCSQLite-OSX-dummy.m in Sources */,
+				936AB97567DD635A2AC41E8523C77726 /* CCSQLite.m in Sources */,
+				A5669094882246BFC252FDCB52D0D15A /* CCSQLitePool.m in Sources */,
+				59F38550660486B3EFC2ED5F9D9709DC /* CCSQLiteQueue.m in Sources */,
+				04C9BB3BA070C30CD05AEAC14D0C5E1B /* CCStatement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,31 +573,7 @@
 			};
 			name = Release;
 		};
-		595AA302C0C74407C29D12ECB2E6173D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14EDEC002FA02E52B29BAB3C6631B09D /* CCSQLite-OSX.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_PREFIX = lib;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CCSQLite-OSX/CCSQLite-OSX-prefix.pch";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		5FAB818DBBEE634AC814BA8E3FF85F4B /* Debug */ = {
+		9E0DFC53376A4F6E1481BEC3E703A138 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 14EDEC002FA02E52B29BAB3C6631B09D /* CCSQLite-OSX.xcconfig */;
 			buildSettings = {
@@ -610,7 +586,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/CCSQLite-OSX/CCSQLite-OSX-prefix.pch";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -621,19 +597,19 @@
 			};
 			name = Debug;
 		};
-		644DA2C693A993C30F9C19C7E639A727 /* Release */ = {
+		A4D08EA3AF4B85B5814C993943E63B29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE9D529D703DF8AB560CFFD82A7B9A78 /* CCSQLite-iOS.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/CCSQLite-iOS/CCSQLite-iOS-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -642,7 +618,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
 		B37F844228B18873E12843429194EACA /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -689,19 +665,19 @@
 			};
 			name = Debug;
 		};
-		B3FDE7210FB1806F0B11EFB0445BA1BD /* Debug */ = {
+		E81984D25BA2061D1925CF9C651EDA97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE9D529D703DF8AB560CFFD82A7B9A78 /* CCSQLite-iOS.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/CCSQLite-iOS/CCSQLite-iOS-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
@@ -710,7 +686,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		FAA6C2B96D0F958DDB87845C58353BA1 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -737,14 +713,38 @@
 			};
 			name = Release;
 		};
+		FC2F16CE976DBA08FDFC60B2F4F38DA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14EDEC002FA02E52B29BAB3C6631B09D /* CCSQLite-OSX.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CCSQLite-OSX/CCSQLite-OSX-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		0399ECC77563D11A7BB65C072226054D /* Build configuration list for PBXNativeTarget "CCSQLite-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3FDE7210FB1806F0B11EFB0445BA1BD /* Debug */,
-				644DA2C693A993C30F9C19C7E639A727 /* Release */,
+				A4D08EA3AF4B85B5814C993943E63B29 /* Debug */,
+				E81984D25BA2061D1925CF9C651EDA97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -779,8 +779,8 @@
 		A7950D69A00B6CFE636366D676CF5AD4 /* Build configuration list for PBXNativeTarget "CCSQLite-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5FAB818DBBEE634AC814BA8E3FF85F4B /* Debug */,
-				595AA302C0C74407C29D12ECB2E6173D /* Release */,
+				9E0DFC53376A4F6E1481BEC3E703A138 /* Debug */,
+				FC2F16CE976DBA08FDFC60B2F4F38DA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
