@@ -10,7 +10,7 @@
 
 /** Objective-C wrapper for `sqlite3_stmt`
  
- This is a wrapper for a SQLite `sqlite3_stmt`. Generally when using FMDB you will not need to interact directly with `CCStatement`, but rather with `<CCSQLite>` and `<CCResultSet>` only.
+ This is a wrapper for a SQLite `sqlite3_stmt`. Generally when using CCSQLite you will not need to interact directly with `CCStatement`, but rather with `<CCSQLite>` and `<CCResultSet>` only.
  
  ### See also
  

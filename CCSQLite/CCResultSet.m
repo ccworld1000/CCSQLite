@@ -10,7 +10,7 @@
 #import "CCSQLite.h"
 #import "unistd.h"
 
-#if FMDB_SQLITE_STANDALONE
+#if CC_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>

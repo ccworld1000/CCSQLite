@@ -9,7 +9,7 @@
 #import "CCSQLiteQueue.h"
 #import "CCSQLite.h"
 
-#if FMDB_SQLITE_STANDALONE
+#if CC_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
@@ -83,7 +83,7 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
         
         _path = CCReturnRetained(aPath);
         
-        _queue = dispatch_queue_create([[NSString stringWithFormat:@"fmdb.%@", self] UTF8String], NULL);
+        _queue = dispatch_queue_create([[NSString stringWithFormat:@"CCSQLiteQueue.%@", self] UTF8String], NULL);
         dispatch_queue_set_specific(_queue, kDispatchQueueSpecificKey, (__bridge void *)self, NULL);
         _openFlags = openFlags;
         _vfsName = [vfsName copy];

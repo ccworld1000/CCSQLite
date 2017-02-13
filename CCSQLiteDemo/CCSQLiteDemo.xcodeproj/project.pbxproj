@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		009EA1B01E5160CE00285175 /* CCSQLiteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */; };
+		009EA1B11E5160CE00285175 /* CCSQLiteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */; };
 		18A7967F1E5115F300EE610C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7967E1E5115F300EE610C /* main.m */; };
 		18A796821E5115F300EE610C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A796811E5115F300EE610C /* AppDelegate.m */; };
 		18A796851E5115F300EE610C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A796841E5115F300EE610C /* ViewController.m */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		009EA1AE1E5160CE00285175 /* CCSQLiteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSQLiteTest.h; sourceTree = "<group>"; };
+		009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSQLiteTest.m; sourceTree = "<group>"; };
 		18A7967A1E5115F300EE610C /* CCSQLiteiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCSQLiteiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A7967E1E5115F300EE610C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18A796801E5115F300EE610C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -70,9 +74,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		009EA1AD1E51609500285175 /* CCSQLiteTest */ = {
+			isa = PBXGroup;
+			children = (
+				009EA1AE1E5160CE00285175 /* CCSQLiteTest.h */,
+				009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */,
+			);
+			path = CCSQLiteTest;
+			sourceTree = "<group>";
+		};
 		18A7966F1E51157500EE610C = {
 			isa = PBXGroup;
 			children = (
+				009EA1AD1E51609500285175 /* CCSQLiteTest */,
 				18A7967C1E5115F300EE610C /* CCSQLiteiOSDemo */,
 				18A796971E51161700EE610C /* CCSQLiteOSXDemo */,
 				18A7967B1E5115F300EE610C /* Products */,
@@ -207,6 +221,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "CC | ccworld1000@gmail.com";
 				TargetAttributes = {
 					18A796791E5115F300EE610C = {
 						CreatedOnToolsVersion = 7.2;
@@ -270,7 +285,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		16D1C20C1EC2F28F6163FAC5 /* [CP] Check Pods Manifest.lock */ = {
@@ -285,7 +300,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9D2BA61E91FB9BEE032D7569 /* [CP] Copy Pods Resources */ = {
@@ -356,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A796851E5115F300EE610C /* ViewController.m in Sources */,
+				009EA1B01E5160CE00285175 /* CCSQLiteTest.m in Sources */,
 				18A796821E5115F300EE610C /* AppDelegate.m in Sources */,
 				18A7967F1E5115F300EE610C /* main.m in Sources */,
 			);
@@ -366,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A796A01E51161700EE610C /* ViewController.m in Sources */,
+				009EA1B11E5160CE00285175 /* CCSQLiteTest.m in Sources */,
 				18A7969D1E51161700EE610C /* main.m in Sources */,
 				18A7969A1E51161700EE610C /* AppDelegate.m in Sources */,
 			);

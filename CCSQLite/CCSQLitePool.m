@@ -6,7 +6,7 @@
 //  Copyright © 2017 CC | ccworld1000@gmail.com. All rights reserved.
 //
 
-#if FMDB_SQLITE_STANDALONE
+#if CC_SQLITE_STANDALONE
 #import <sqlite3/sqlite3.h>
 #else
 #import <sqlite3.h>
@@ -44,7 +44,7 @@
     
     if (self != nil) {
         _path               = [aPath copy];
-        _lockQueue          = dispatch_queue_create([[NSString stringWithFormat:@"fmdb.%@", self] UTF8String], NULL);
+        _lockQueue          = dispatch_queue_create([[NSString stringWithFormat:@"CCSQLitePool.%@", self] UTF8String], NULL);
         _databaseInPool     = CCReturnRetained([NSMutableArray array]);
         _databaseOutPool    = CCReturnRetained([NSMutableArray array]);
         _openFlags          = openFlags;
