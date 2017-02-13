@@ -1,14 +1,17 @@
 {
   "name": "CCSQLite",
   "version": "1.0.0",
-  "summary": "A Cocoa / Objective-C wrapper around SQLite.",
-  "homepage": "https://github.com/ccgus/fmdb",
-  "license": "MIT",
+  "summary": "A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC)",
+  "homepage": "https://github.com/ccworld1000/CCSQLite",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE.txt"
+  },
   "authors": {
-    "August Mueller": "gus@flyingmeat.com"
+    "CC": "ccworld1000@gmail.com"
   },
   "source": {
-    "git": "https://github.com/ccgus/fmdb.git",
+    "git": "https://github.com/ccworld1000/CCSQLite.git",
     "tag": "1.0.0"
   },
   "requires_arc": true,
@@ -26,49 +29,12 @@
       "source_files": "CCSQLite/*.{h,m}"
     },
     {
-      "name": "FTS",
-      "source_files": "src/extra/fts3/*.{h,m}",
-      "dependencies": {
-        "CCSQLite/standard": [
-
-        ]
-      }
-    },
-    {
-      "name": "standalone",
-      "xcconfig": {
-        "OTHER_CFLAGS": "$(inherited) -DFMDB_SQLITE_STANDALONE"
-      },
-      "dependencies": {
-        "sqlite3": [
-
-        ]
-      },
-      "source_files": "CCSQLite/CC*.{h,m}"
-    },
-    {
-      "name": "standalone-fts",
-      "xcconfig": {
-        "OTHER_CFLAGS": "$(inherited) -DFMDB_SQLITE_STANDALONE"
-      },
-      "source_files": [
-        "CCSQLite/CC*.{h,m}",
-        "src/extra/fts3/*.{h,m}"
-      ],
-      "dependencies": {
-        "sqlite3/fts": [
-
-        ]
-      }
-    },
-    {
       "name": "SQLCipher",
       "dependencies": {
         "SQLCipher": [
 
         ]
       },
-      "source_files": "CCSQLite/CC*.{h,m}",
       "xcconfig": {
         "OTHER_CFLAGS": "$(inherited) -DSQLITE_HAS_CODEC -DHAVE_USLEEP=1"
       }

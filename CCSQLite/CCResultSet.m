@@ -10,12 +10,6 @@
 #import "CCSQLite.h"
 #import "unistd.h"
 
-#if CC_SQLITE_STANDALONE
-#import <sqlite3/sqlite3.h>
-#else
-#import <sqlite3.h>
-#endif
-
 @interface CCResultSet () {
     CCSQLite          *_parentDB;
     NSMutableDictionary *_columnNameToIndexMap;

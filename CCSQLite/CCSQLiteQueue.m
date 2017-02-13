@@ -9,12 +9,6 @@
 #import "CCSQLiteQueue.h"
 #import "CCSQLite.h"
 
-#if CC_SQLITE_STANDALONE
-#import <sqlite3/sqlite3.h>
-#else
-#import <sqlite3.h>
-#endif
-
 @interface CCSQLiteQueue () {
     dispatch_queue_t    _queue;
     CCSQLite          *_db;

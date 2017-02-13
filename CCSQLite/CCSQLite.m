@@ -12,11 +12,7 @@
 #import "unistd.h"
 #import <objc/runtime.h>
 
-#if CC_SQLITE_STANDALONE
-#import <sqlite3/sqlite3.h>
-#else
 #import <sqlite3.h>
-#endif
 
 @interface CCSQLite () {
     void*               _db;

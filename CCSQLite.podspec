@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version = '1.0.0'
   s.summary = 'A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC)'
   s.homepage = 'https://github.com/ccworld1000/CCSQLite'
-  s.license = 'MIT'
+  s.license = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author = { 'CC' => 'ccworld1000@gmail.com' }
   s.source = { :git => 'https://github.com/ccworld1000/CCSQLite.git', :tag => "#{s.version}" }
   s.requires_arc = true
@@ -15,18 +15,11 @@ Pod::Spec.new do |s|
     ss.source_files = 'CCSQLite/*.{h,m}'
   end
 
-  # build the latest stable version of sqlite3
-  s.subspec 'standalone' do |ss|
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DCC_SQLITE_STANDALONE' }
-    ss.dependency 'sqlite3'
-    #ss.source_files = 'CCSQLite/CC*.{h,m}'
-    ss.dependency  'CCSQLite/standard'
-  end
-
   # use SQLCipher and enable -DSQLITE_HAS_CODEC flag
   s.subspec 'SQLCipher' do |ss|
     ss.dependency 'SQLCipher'
-    ss.source_files = 'CCSQLite/*.{h,m}'
+  	#  ss.source_files = 'CCSQLite/*.{h,m}'
+    #ss.dependency  'CCSQLite/standard'
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_HAS_CODEC -DHAVE_USLEEP=1' }
   end
   

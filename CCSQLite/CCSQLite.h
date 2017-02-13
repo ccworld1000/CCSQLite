@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <sqlite3.h>
 
 #import "CCSQLite.h"
 #import "CCStatement.h"
@@ -14,11 +15,7 @@
 #import "CCSQLiteQueue.h"
 #import "CCSQLitePool.h"
 
-#if CC_SQLITE_STANDALONE
-#import <sqlite3/sqlite3.h>
-#else
-#import <sqlite3.h>
-#endif
+
 
 #ifndef CCNULL
 #define CCNULL  0x00

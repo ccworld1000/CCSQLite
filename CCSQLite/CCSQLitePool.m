@@ -6,12 +6,6 @@
 //  Copyright © 2017 CC | ccworld1000@gmail.com. All rights reserved.
 //
 
-#if CC_SQLITE_STANDALONE
-#import <sqlite3/sqlite3.h>
-#else
-#import <sqlite3.h>
-#endif
-
 #import "CCSQLitePool.h"
 #import "CCSQLite.h"
 
