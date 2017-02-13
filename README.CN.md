@@ -1,43 +1,43 @@
 ***
 # CCSQLite
 ***
-PURPOSE : YapDatabase(key/value store) + FMDB
+目的 : YapDatabase(key/value store) + FMDB
 
-[EN README](README.md) [CN README](README.CN.md)
+[英文README](README.md)
 
 ***
-# Reason && Why
+# 缘由 && 为啥
 ***
-when i wirte "HSCache [cache hanlde]", i want to chose FMDB or YapDatabase, but But they look different. so i just want [YapDatabase(key/value store) + FMDB], and CCSQLite on the way.
+当我在写"HSCache [缓存处理方面]", 想选择FMDB或者YapDatabase, 但是他们看起来不一样. 因此想结合YapDatabase(键/值 store) 与 FMDB, 于是 CCSQLite 在路上.
 
-# Reference
+# 引用
 [FMDB](https://github.com/ccgus/fmdb) 
 
 [YapDatabase](https://github.com/yapstudios/YapDatabase)
 
 ***
-# PURPOSE
-* adjust FMDB to ARC mode
-* YapDatabase key/value store 
-* CCSQLite Combine FMDB + YapDatabase key/value
+# 目的
+* 转变 FMDB 到 ARC 模式
+* YapDatabase 键/值 store 
+* CCSQLite 结合 FMDB 和 YapDatabase 键/值 
 
 ***
 
-# Change
+# 调整变化
 ***
 ![HSFont HSFontMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
 ***
-# Usage && Migrate
+# 用法 && 迁移
 ***
 
-[Usage : Similar FMDB, just repalce "FM\*" to "CC\*"] (https://github.com/ccgus/fmdb/blob/master/README.markdown)
+[用法 : 类似 FMDB, 只要替换 "FM\*" 成 "CC\*"] (https://github.com/ccgus/fmdb/blob/master/README.markdown)
 
-[more detail](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
+[更多详细](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
 ***
 
-# MIT License
+# MIT许可证
 ***
 
 MIT License
@@ -63,7 +63,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ***
-# Other LICENSE
+# 其他许可证
 ***
 
 [FMDB LICENSE](LICENSE/LICENSE.FMDB.txt) 
