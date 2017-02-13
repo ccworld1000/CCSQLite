@@ -3,7 +3,7 @@
 ***
 PURPOSE : YapDatabase(key/value store) + FMDB
 
-[EN README](README.md) [CN README](README.CN.md)
+[CN README](README.CN.md)
 
 ***
 # Reason && Why
