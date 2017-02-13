@@ -15,30 +15,18 @@ Pod::Spec.new do |s|
     ss.source_files = 'CCSQLite/*.{h,m}'
   end
 
-  # use the built-in library version of sqlite3 with custom FTS tokenizer source files
-  s.subspec 'FTS' do |ss|
-    ss.source_files = 'src/extra/fts3/*.{h,m}'
-    ss.dependency 'CCSQLite/standard'
-  end
-
   # build the latest stable version of sqlite3
   s.subspec 'standalone' do |ss|
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DFMDB_SQLITE_STANDALONE' }
+    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DCC_SQLITE_STANDALONE' }
     ss.dependency 'sqlite3'
-    ss.source_files = 'CCSQLite/CC*.{h,m}'
-  end
-
-  # build with FTS support and custom FTS tokenizer source files
-  s.subspec 'standalone-fts' do |ss|
-    ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DFMDB_SQLITE_STANDALONE' }
-    ss.source_files = 'CCSQLite/CC*.{h,m}', 'src/extra/fts3/*.{h,m}'
-    ss.dependency 'sqlite3/fts'
+    #ss.source_files = 'CCSQLite/CC*.{h,m}'
+    ss.dependency  'CCSQLite/standard'
   end
 
   # use SQLCipher and enable -DSQLITE_HAS_CODEC flag
   s.subspec 'SQLCipher' do |ss|
     ss.dependency 'SQLCipher'
-    ss.source_files = 'CCSQLite/CC*.{h,m}'
+    ss.source_files = 'CCSQLite/*.{h,m}'
     ss.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DSQLITE_HAS_CODEC -DHAVE_USLEEP=1' }
   end
   
