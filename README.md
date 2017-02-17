@@ -41,7 +41,7 @@ when i wirte "HSCache [cache hanlde]", i want to chose FMDB or YapDatabase, but 
 
 ***
 
-# Change
+# Version 1.0.0 Change
 ***
 ![CCSQLite CCSQLiteMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 

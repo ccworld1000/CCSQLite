@@ -41,7 +41,7 @@ Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
 
 ***
 
-# 调整变化
+# 版本 1.0.0调整变化
 ***
 ![HSFont HSFontMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
