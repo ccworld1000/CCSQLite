@@ -14,6 +14,18 @@
 
 #import <sqlite3.h>
 
+static int connectionBusyHandler(void *ptr, int count) {
+    CCSQLite * currentDatabase = (__bridge CCSQLite*)ptr;
+    
+    usleep(50*1000); // sleep 50ms
+    
+    if (count % 4 == 1) { // log every 4th attempt but not the first one
+        NSLog(@"Cannot obtain busy lock on SQLite from database (%p), is another process locking the database? Retrying in 50ms...", currentDatabase);
+    }
+    
+    return 1;
+}
+
 @interface CCSQLite () {
     void*               _db;
     NSString*           _databasePath;
@@ -36,6 +48,671 @@
 @end
 
 @implementation CCSQLite
+
+- (NSString *)databasePath_wal
+{
+    return [[self databasePath] stringByAppendingString:@"-wal"];
+}
+
+- (NSString *)databasePath_shm
+{
+    return [[self databasePath] stringByAppendingString:@"-shm"];
+}
+
+//- (CCOptions *)options
+//{
+//    return [_options copy];
+//}
+
+/**
+ * The default serializer & deserializer use NSCoding (NSKeyedArchiver & NSKeyedUnarchiver).
+ * Thus the objects need only support the NSCoding protocol.
+ **/
++ (CCSQLiteSerializer)defaultSerializer
+{
+    return ^ NSData* (NSString __unused *collection, NSString __unused *key, id object){
+        return [NSKeyedArchiver archivedDataWithRootObject:object];
+    };
+}
+
+/**
+ * The default serializer & deserializer use NSCoding (NSKeyedArchiver & NSKeyedUnarchiver).
+ * Thus the objects need only support the NSCoding protocol.
+ **/
++ (CCSQLiteDeserializer)defaultDeserializer
+{
+    return ^ id (NSString __unused *collection, NSString __unused *key, NSData *data){
+        return data && data.length > 0 ? [NSKeyedUnarchiver unarchiveObjectWithData:data] : nil;
+    };
+}
+
+/**
+ * Property lists ONLY support the following: NSData, NSString, NSArray, NSDictionary, NSDate, and NSNumber.
+ * Property lists are highly optimized and are used extensively by Apple.
+ *
+ * Property lists make a good fit when your existing code already uses them,
+ * such as replacing NSUserDefaults with a database.
+ **/
++ (CCSQLiteSerializer)propertyListSerializer
+{
+    return ^ NSData* (NSString __unused *collection, NSString __unused *key, id object){
+        return [NSPropertyListSerialization dataWithPropertyList:object
+                                                          format:NSPropertyListBinaryFormat_v1_0
+                                                         options:NSPropertyListImmutable
+                                                           error:NULL];
+    };
+}
+
+/**
+ * Property lists ONLY support the following: NSData, NSString, NSArray, NSDictionary, NSDate, and NSNumber.
+ * Property lists are highly optimized and are used extensively by Apple.
+ *
+ * Property lists make a good fit when your existing code already uses them,
+ * such as replacing NSUserDefaults with a database.
+ **/
++ (CCSQLiteDeserializer)propertyListDeserializer
+{
+    return ^ id (NSString __unused *collection, NSString __unused *key, NSData *data){
+        return [NSPropertyListSerialization propertyListWithData:data options:0 format:NULL error:NULL];
+    };
+}
+
+/**
+ * A FASTER serializer than the default, if serializing ONLY a NSDate object.
+ * You may want to use timestampSerializer & timestampDeserializer if your metadata is simply an NSDate.
+ **/
++ (CCSQLiteSerializer)timestampSerializer
+{
+    return ^ NSData* (NSString __unused *collection, NSString __unused *key, id object) {
+        
+        if ([object isKindOfClass:[NSDate class]])
+        {
+            NSTimeInterval timestamp = [(NSDate *)object timeIntervalSinceReferenceDate];
+            
+            return [[NSData alloc] initWithBytes:(void *)&timestamp length:sizeof(NSTimeInterval)];
+        }
+        else
+        {
+            return [NSKeyedArchiver archivedDataWithRootObject:object];
+        }
+    };
+}
+
+/**
+ * A FASTER deserializer than the default, if deserializing data from timestampSerializer.
+ * You may want to use timestampSerializer & timestampDeserializer if your metadata is simply an NSDate.
+ **/
++ (CCSQLiteDeserializer)timestampDeserializer
+{
+    return ^ id (NSString __unused *collection, NSString __unused *key, NSData *data) {
+        
+        if ([data length] == sizeof(NSTimeInterval))
+        {
+            NSTimeInterval timestamp;
+            memcpy((void *)&timestamp, [data bytes], sizeof(NSTimeInterval));
+            
+            return [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:timestamp];
+        }
+        else
+        {
+            return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        }
+    };
+}
+
++ (CCSQLiteSerializer) jsonSerializer {
+    return ^NSData* (NSString *collection, NSString *key, id object) {
+        if ([object isKindOfClass:[NSString class]]) {
+            NSString *data = object;
+            return [data dataUsingEncoding:NSUTF8StringEncoding];
+        } else if ([object isKindOfClass:[NSData class]]) {
+            return object;
+        } else {
+            NSLog(@"error args for object");
+            return nil;
+        }
+    };
+}
+
++ (CCSQLiteDeserializer) jsonDeserializer {
+    return ^id (NSString *collection, NSString *key, NSData *data) {
+        NSError *error = nil;
+        id object = [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error:&error];
+        
+        if (error) {
+            NSLog(@"jsonDeserializer : %@", error);;
+        }
+        
+        return object;
+    };
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Setup
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Attempts to open (or create & open) the database connection.
+ **/
+- (BOOL)openDatabase
+{
+    // Open the database connection.
+    //
+    // We use SQLITE_OPEN_NOMUTEX to use the multi-thread threading mode,
+    // as we will be serializing access to the connection externally.
+    
+    int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_NOMUTEX | SQLITE_OPEN_PRIVATECACHE;
+    
+    int status = sqlite3_open_v2([[self databasePath] UTF8String], &_db, flags, NULL);
+    if (status != SQLITE_OK)
+    {
+        // There are a few reasons why the database might not open.
+        // One possibility is if the database file has become corrupt.
+        
+        // Sometimes the open function returns a db to allow us to query it for the error message.
+        // The openConfigCreate block will close it for us.
+        if (_db) {
+            NSLog(@"Error opening database: %d %s", status, sqlite3_errmsg(_db));
+        }
+        else {
+            NSLog(@"Error opening database: %d", status);
+        }
+        
+        return NO;
+    }
+    // Add a busy handler if we are in multiprocess mode
+    if (_options.enableMultiProcessSupport) {
+        sqlite3_busy_handler(_db, connectionBusyHandler, (__bridge void *)(self));
+    }
+    
+    return YES;
+}
+
+/**
+ * Configures the database connection.
+ * This mainly means enabling WAL mode, and configuring the auto-checkpoint.
+ **/
+- (BOOL)configureDatabase:(BOOL)isNewDatabaseFile
+{
+    int status;
+    
+    // Set mandatory pragmas
+    
+    if (isNewDatabaseFile && (_options.pragmaPageSize > 0))
+    {
+        NSString *pragma_page_size =
+        [NSString stringWithFormat:@"PRAGMA page_size = %ld;", (long)_options.pragmaPageSize];
+        
+        status = sqlite3_exec(_db, [pragma_page_size UTF8String], NULL, NULL, NULL);
+        if (status != SQLITE_OK)
+        {
+            NSLog(@"Error setting PRAGMA page_size: %d %s", status, sqlite3_errmsg(_db));
+        }
+    }
+    
+    status = sqlite3_exec(_db, "PRAGMA journal_mode = WAL;", NULL, NULL, NULL);
+    if (status != SQLITE_OK)
+    {
+        NSLog(@"Error setting PRAGMA journal_mode: %d %s", status, sqlite3_errmsg(_db));
+        return NO;
+    }
+    
+    if (isNewDatabaseFile)
+    {
+        status = sqlite3_exec(_db, "PRAGMA auto_vacuum = FULL; VACUUM;", NULL, NULL, NULL);
+        if (status != SQLITE_OK)
+        {
+            NSLog(@"Error setting PRAGMA auto_vacuum: %d %s", status, sqlite3_errmsg(_db));
+        }
+    }
+    
+    // Set synchronous to normal for THIS sqlite instance.
+    //
+    // This does NOT affect normal connections.
+    // That is, this does NOT affect YapDatabaseConnection instances.
+    // The sqlite connections of normal YapDatabaseConnection instances will follow the set pragmaSynchronous value.
+    //
+    // The reason we hardcode normal for this sqlite instance is because
+    // it's only used to write the initial snapshot value.
+    // And this doesn't need to be durable, as it is initialized to zero everytime.
+    //
+    // (This sqlite db is also used to perform checkpoints.
+    //  But a normal value won't affect these operations,
+    //  as they will perform sync operations whether the connection is normal or full.)
+    
+    status = sqlite3_exec(_db, "PRAGMA synchronous = NORMAL;", NULL, NULL, NULL);
+    if (status != SQLITE_OK)
+    {
+        NSLog(@"Error setting PRAGMA synchronous: %d %s", status, sqlite3_errmsg(_db));
+        // This isn't critical, so we can continue.
+    }
+    
+    // Set journal_size_imit.
+    //
+    // We only need to do set this pragma for THIS connection,
+    // because it is the only connection that performs checkpoints.
+    
+    NSString *pragma_journal_size_limit =
+    [NSString stringWithFormat:@"PRAGMA journal_size_limit = %ld;", (long)_options.pragmaJournalSizeLimit];
+    
+    status = sqlite3_exec(_db, [pragma_journal_size_limit UTF8String], NULL, NULL, NULL);
+    if (status != SQLITE_OK)
+    {
+        NSLog(@"Error setting PRAGMA journal_size_limit: %d %s", status, sqlite3_errmsg(_db));
+        // This isn't critical, so we can continue.
+    }
+    
+    // Set mmap_size (if needed).
+    //
+    // This configures memory mapped I/O.
+    
+    if (_options.pragmaMMapSize > 0)
+    {
+        NSString *pragma_mmap_size =
+        [NSString stringWithFormat:@"PRAGMA mmap_size = %ld;", (long)_options.pragmaMMapSize];
+        
+        status = sqlite3_exec(_db, [pragma_mmap_size UTF8String], NULL, NULL, NULL);
+        if (status != SQLITE_OK)
+        {
+            NSLog(@"Error setting PRAGMA mmap_size: %d %s", status, sqlite3_errmsg(_db));
+            // This isn't critical, so we can continue.
+        }
+    }
+    
+    // Disable autocheckpointing.
+    //
+    // YapDatabase has its own optimized checkpointing algorithm built-in.
+    // It knows the state of every active connection for the database,
+    // so it can invoke the checkpoint methods at the precise time in which a checkpoint can be most effective.
+    
+    sqlite3_wal_autocheckpoint(_db, 0);
+    
+    return YES;
+}
+
+
+#ifdef SQLITE_HAS_CODEC
+/**
+ * Configures database encryption via SQLCipher.
+ **/
+- (BOOL)configureEncryptionForDatabase:(sqlite3 *)sqlite
+{
+    if (options.cipherKeyBlock)
+    {
+        NSData *keyData = options.cipherKeyBlock();
+        
+        if (keyData == nil)
+        {
+            NSAssert(NO, @"CCOptions.cipherKeyBlock cannot return nil!");
+            return NO;
+        }
+        
+        //Setting the PBKDF2 default iteration number (this will have effect next time database is opened)
+        if (options.cipherDefaultkdfIterNumber > 0) {
+            char *errorMsg;
+            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA cipher_default_kdf_iter = %lu", (unsigned long)options.cipherDefaultkdfIterNumber];
+            if (sqlite3_exec(sqlite, [pragmaCommand UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK)
+            {
+                NSLog(@"failed to set database cipher_default_kdf_iter: %s", errorMsg);
+                return NO;
+            }
+        }
+        
+        //Setting the PBKDF2 iteration number
+        if (options.kdfIterNumber > 0) {
+            char *errorMsg;
+            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA kdf_iter = %lu", (unsigned long)options.kdfIterNumber];
+            if (sqlite3_exec(sqlite, [pragmaCommand UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK)
+            {
+                NSLog(@"failed to set database kdf_iter: %s", errorMsg);
+                return NO;
+            }
+        }
+        
+        //Setting the encrypted database page size
+        if (options.cipherPageSize > 0) {
+            char *errorMsg;
+            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA cipher_page_size = %lu", (unsigned long)options.cipherPageSize];
+            if (sqlite3_exec(sqlite, [pragmaCommand UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK)
+            {
+                NSLog(@"failed to set database cipher_page_size: %s", errorMsg);
+                return NO;
+            }
+        }
+        
+        int status = sqlite3_key(sqlite, [keyData bytes], (int)[keyData length]);
+        if (status != SQLITE_OK)
+        {
+            NSLog(@"Error setting SQLCipher key: %d %s", status, sqlite3_errmsg(sqlite));
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+#endif
+
+/**
+ * Creates the database tables we need:
+ *
+ * - yap2      : stores snapshot and metadata for extensions
+ * - database2 : stores collection/key/value/metadata rows
+ **/
+- (BOOL)createTables
+{
+    int status;
+    
+    char *createDatabaseTableStatement =
+    "CREATE TABLE IF NOT EXISTS \"database2\""
+    " (\"rowid\" INTEGER PRIMARY KEY,"
+    "  \"collection\" CHAR NOT NULL,"
+    "  \"key\" CHAR NOT NULL,"
+    "  \"data\" BLOB,"
+    "  \"metadata\" BLOB"
+    " );";
+    
+    status = sqlite3_exec(_db, createDatabaseTableStatement, NULL, NULL, NULL);
+    if (status != SQLITE_OK)
+    {
+        NSLog(@"Failed creating 'database2' table: %d %s", status, sqlite3_errmsg(_db));
+        return NO;
+    }
+    
+    char *createIndexStatement =
+    "CREATE UNIQUE INDEX IF NOT EXISTS \"true_primary_key\" ON \"database2\" ( \"collection\", \"key\" );";
+    
+    status = sqlite3_exec(_db, createIndexStatement, NULL, NULL, NULL);
+    if (status != SQLITE_OK)
+    {
+        NSLog(@"Failed creating index on 'database2' table: %d %s", status, sqlite3_errmsg(_db));
+        return NO;
+    }
+    
+    return YES;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark Init
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//- (id)initWithPath:(NSString *)inPath
+//{
+//    return [self initWithPath:inPath
+//             objectSerializer:NULL
+//           objectDeserializer:NULL
+//           metadataSerializer:NULL
+//         metadataDeserializer:NULL
+//           objectPreSanitizer:NULL
+//          objectPostSanitizer:NULL
+//         metadataPreSanitizer:NULL
+//        metadataPostSanitizer:NULL
+//                      options:nil];
+//}
+
+- (id)initWithPath:(NSString *)inPath
+           options:(nullable CCOptions *)inOptions
+{
+    return [self initWithPath:inPath
+             objectSerializer:NULL
+           objectDeserializer:NULL
+           metadataSerializer:NULL
+         metadataDeserializer:NULL
+           objectPreSanitizer:NULL
+          objectPostSanitizer:NULL
+         metadataPreSanitizer:NULL
+        metadataPostSanitizer:NULL
+                      options:inOptions];
+}
+
+- (id)initWithPath:(NSString *)inPath
+        serializer:(CCSQLiteSerializer)inSerializer
+      deserializer:(CCSQLiteDeserializer)inDeserializer
+{
+    return [self initWithPath:inPath
+             objectSerializer:inSerializer
+           objectDeserializer:inDeserializer
+           metadataSerializer:inSerializer
+         metadataDeserializer:inDeserializer
+           objectPreSanitizer:NULL
+          objectPostSanitizer:NULL
+         metadataPreSanitizer:NULL
+        metadataPostSanitizer:NULL
+                      options:nil];
+}
+
+- (id)initWithPath:(NSString *)inPath
+        serializer:(CCSQLiteSerializer)inSerializer
+      deserializer:(CCSQLiteDeserializer)inDeserializer
+           options:(CCOptions *)inOptions
+{
+    return [self initWithPath:inPath
+             objectSerializer:inSerializer
+           objectDeserializer:inDeserializer
+           metadataSerializer:inSerializer
+         metadataDeserializer:inDeserializer
+           objectPreSanitizer:NULL
+          objectPostSanitizer:NULL
+         metadataPreSanitizer:NULL
+        metadataPostSanitizer:NULL
+                      options:inOptions];
+}
+
+- (id)initWithPath:(NSString *)inPath
+        serializer:(CCSQLiteSerializer)inSerializer
+      deserializer:(CCSQLiteDeserializer)inDeserializer
+      preSanitizer:(CCSQLitePreSanitizerr)inPreSanitizer
+     postSanitizer:(CCSQLitePostSanitizer)inPostSanitizer
+           options:(CCOptions *)inOptions
+{
+    return [self initWithPath:inPath
+             objectSerializer:inSerializer
+           objectDeserializer:inDeserializer
+           metadataSerializer:inSerializer
+         metadataDeserializer:inDeserializer
+           objectPreSanitizer:inPreSanitizer
+          objectPostSanitizer:inPostSanitizer
+         metadataPreSanitizer:inPreSanitizer
+        metadataPostSanitizer:inPostSanitizer
+                      options:inOptions];
+}
+
+- (id)initWithPath:(NSString *)inPath objectSerializer:(CCSQLiteSerializer)inObjectSerializer
+objectDeserializer:(CCSQLiteDeserializer)inObjectDeserializer
+metadataSerializer:(CCSQLiteSerializer)inMetadataSerializer
+metadataDeserializer:(CCSQLiteDeserializer)inMetadataDeserializer
+{
+    return [self initWithPath:inPath
+             objectSerializer:inObjectSerializer
+           objectDeserializer:inObjectDeserializer
+           metadataSerializer:inMetadataSerializer
+         metadataDeserializer:inMetadataDeserializer
+           objectPreSanitizer:NULL
+          objectPostSanitizer:NULL
+         metadataPreSanitizer:NULL
+        metadataPostSanitizer:NULL
+                      options:nil];
+}
+
+- (id)initWithPath:(NSString *)inPath objectSerializer:(CCSQLiteSerializer)inObjectSerializer
+objectDeserializer:(CCSQLiteDeserializer)inObjectDeserializer
+metadataSerializer:(CCSQLiteSerializer)inMetadataSerializer
+metadataDeserializer:(CCSQLiteDeserializer)inMetadataDeserializer
+           options:(CCOptions *)inOptions
+{
+    return [self initWithPath:inPath
+             objectSerializer:inObjectSerializer
+           objectDeserializer:inObjectDeserializer
+           metadataSerializer:inMetadataSerializer
+         metadataDeserializer:inMetadataDeserializer
+           objectPreSanitizer:NULL
+          objectPostSanitizer:NULL
+         metadataPreSanitizer:NULL
+        metadataPostSanitizer:NULL
+                      options:inOptions];
+}
+
+- (id)initWithPath:(NSString *)inPath objectSerializer:(CCSQLiteSerializer)inObjectSerializer
+objectDeserializer:(CCSQLiteDeserializer)inObjectDeserializer
+metadataSerializer:(CCSQLiteSerializer)inMetadataSerializer
+metadataDeserializer:(CCSQLiteDeserializer)inMetadataDeserializer
+objectPreSanitizer:(CCSQLitePreSanitizerr)inObjectPreSanitizer
+objectPostSanitizer:(CCSQLitePostSanitizer)inObjectPostSanitizer
+metadataPreSanitizer:(CCSQLitePreSanitizerr)inMetadataPreSanitizer
+metadataPostSanitizer:(CCSQLitePostSanitizer)inMetadataPostSanitizer
+           options:(CCOptions *)inOptions
+{
+    // First, standardize path.
+    // This allows clients to be lazy when passing paths.
+    NSString *path = [inPath stringByStandardizingPath];
+    
+    if ((self = [super init]))
+    {
+        _databasePath = path;
+        _options = inOptions ? [inOptions copy] : [[CCOptions alloc] init];
+        
+        __block BOOL isNewDatabaseFile = ![[NSFileManager defaultManager] fileExistsAtPath: [self databasePath]];
+        
+        BOOL(^openConfigCreate)(void) = ^BOOL (void) { @autoreleasepool {
+            
+            BOOL result = YES;
+            
+            if (result) result = [self openDatabase];
+#ifdef SQLITE_HAS_CODEC
+            if (result) result = [self configureEncryptionForDatabase:db];
+#endif
+            if (result) result = [self configureDatabase:isNewDatabaseFile];
+            if (result) result = [self createTables];
+            
+            if (!result && _db)
+            {
+                sqlite3_close(_db);
+                _db = NULL;
+            }
+            
+            return result;
+        }};
+        
+        BOOL result = openConfigCreate();
+        if (!result)
+        {
+            // There are a few reasons why the database might not open.
+            // One possibility is if the database file has become corrupt.
+            
+            if (_options.corruptAction == CCOptionsCorruptAction_Fail)
+            {
+                // Fail - do not try to resolve
+            }
+            else if (_options.corruptAction == CCOptionsCorruptAction_Rename)
+            {
+                // Try to rename the corrupt database file.
+                
+                BOOL renamed = NO;
+                BOOL failed = NO;
+                
+                NSString *newDatabasePath = nil;
+                int i = 0;
+                
+                do
+                {
+                    NSString *extension = [NSString stringWithFormat:@"%d.corrupt", i];
+                    newDatabasePath = [[self databasePath] stringByAppendingPathExtension:extension];
+                    
+                    if ([[NSFileManager defaultManager] fileExistsAtPath:newDatabasePath])
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        NSError *error = nil;
+                        renamed = [[NSFileManager defaultManager] moveItemAtPath:[self databasePath]
+                                                                          toPath:newDatabasePath
+                                                                           error:&error];
+                        if (!renamed)
+                        {
+                            failed = YES;
+                            NSLog(@"Error renaming corrupt database file: (%@ -> %@) %@",
+                                        [[self databasePath] lastPathComponent], [newDatabasePath lastPathComponent], error);
+                        }
+                    }
+                    
+                } while (i < INT_MAX && !renamed && !failed);
+                
+                if (renamed)
+                {
+                    isNewDatabaseFile = YES;
+                    result = openConfigCreate();
+                    if (result) {
+                        NSLog(@"Database corruption resolved. Renamed corrupt file. (newDB=%@) (corruptDB=%@)",
+                                   [[self databasePath] lastPathComponent], [newDatabasePath lastPathComponent]);
+                    }
+                    else {
+                        NSLog(@"Database corruption unresolved. (name=%@)", [[self databasePath] lastPathComponent]);
+                    }
+                }
+                
+            }
+            else // if (options.corruptAction == CCOptionsCorruptAction_Delete)
+            {
+                // Try to delete the corrupt database file.
+                
+                NSError *error = nil;
+                BOOL deleted = [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+                
+                if (deleted)
+                {
+                    isNewDatabaseFile = YES;
+                    result = openConfigCreate();
+                    if (result) {
+                        NSLog(@"Database corruption resolved. Deleted corrupt file. (name=%@)",
+                                   [[self databasePath] lastPathComponent]);
+                    }
+                    else {
+                        NSLog(@"Database corruption unresolved. (name=%@)", [[self databasePath] lastPathComponent]);
+                    }
+                }
+                else
+                {
+                    NSLog(@"Error deleting corrupt database file: %@", error);
+                }
+            }
+        }
+        if (!result)
+        {
+            return nil;
+        }
+        
+        
+        // Initialize variables
+        
+        CCSQLiteSerializer defaultSerializer     = nil;
+        CCSQLiteDeserializer defaultDeserializer = nil;
+        
+        if (!inObjectSerializer || !inMetadataSerializer)
+            defaultSerializer = [[self class] defaultSerializer];
+        
+        if (!inObjectDeserializer || !inMetadataDeserializer)
+            defaultDeserializer = [[self class] defaultDeserializer];
+        
+        _objectSerializer = (CCSQLiteSerializer)[inObjectSerializer copy] ?: defaultSerializer;
+        _objectDeserializer = (CCSQLiteDeserializer)[inObjectDeserializer copy] ?: defaultDeserializer;
+        
+        _metadataSerializer = (CCSQLiteSerializer)[inMetadataSerializer copy] ?: defaultSerializer;
+        _metadataDeserializer = (CCSQLiteDeserializer)[inMetadataDeserializer copy] ?: defaultDeserializer;
+        
+        _objectPreSanitizer = (CCSQLitePreSanitizerr)[inObjectPreSanitizer copy];
+        _objectPostSanitizer = (CCSQLitePostSanitizer)[inObjectPostSanitizer copy];
+        
+        _metadataPreSanitizer = (CCSQLitePreSanitizerr)[inMetadataPreSanitizer copy];
+        _metadataPostSanitizer = (CCSQLitePostSanitizer)[inMetadataPostSanitizer copy];
+
+    }
+    return self;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark CCSQLite instantiation and deallocation
 
@@ -61,6 +738,17 @@
         _crashOnErrors              = NO;
         _maxBusyRetryTimeInterval   = 2;
     }
+    
+    return [self initWithPath:aPath
+             objectSerializer:NULL
+           objectDeserializer:NULL
+           metadataSerializer:NULL
+         metadataDeserializer:NULL
+           objectPreSanitizer:NULL
+          objectPostSanitizer:NULL
+         metadataPreSanitizer:NULL
+        metadataPostSanitizer:NULL
+                      options:nil];
     
     return self;
 }
