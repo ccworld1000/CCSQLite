@@ -47,13 +47,9 @@ when i wirte "HSCache [cache hanlde]", i want to chose FMDB or YapDatabase, but 
 
 ## Podfile
 
-```objective-c
-#import <CCSQLite.h>
+```ruby
+pod 'CCSQLite'
 ```
-or
-
-```objective-c
-#imp
 
 ***
 # Usage && Migrate
@@ -75,6 +71,11 @@ or
 # demo code
 ```objective-c
 #import <CCSQLite.h>
+```
+or
+
+```objective-c
+#import "CCSQLite.h"
 ```
 
 
