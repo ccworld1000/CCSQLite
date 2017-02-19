@@ -41,15 +41,19 @@ when i wirte "HSCache [cache hanlde]", i want to chose FMDB or YapDatabase, but 
 
 ***
 
-# Version 1.0.0 Change
+# Greater than Version 1.0.0 Change
 ***
 ![CCSQLite CCSQLiteMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
 ## Podfile
 
-```ruby
-pod 'CCSQLite'
+```objective-c
+#import <CCSQLite.h>
 ```
+or
+
+```objective-c
+#imp
 
 ***
 # Usage && Migrate

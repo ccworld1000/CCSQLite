@@ -41,7 +41,7 @@ Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
 
 ***
 
-# 版本 1.0.0调整变化
+# 大于版本 1.0.0调整变化
 ***
 ![HSFont HSFontMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
@@ -70,6 +70,11 @@ pod 'CCSQLite'
 # 演示代码 CCSQLiteTest
 ```objective-c
 #import <CCSQLite.h>
+```
+或者
+
+```objective-c
+#import "CCSQLite.h"
 ```
 
 
