@@ -204,28 +204,6 @@ typedef void (^CCSQLitePostSanitizer)(NSString *collection, NSString *key, id ob
 
 /**
  * Opens or creates a sqlite database with the given path.
- * The defaults are used for everything.
- *
- * In particular, the defaultSerializer and defaultDeserializer are used. (NSCoding)
- * No sanitizer is used.
- * The default options are used.
- *
- * @see defaultSerializer
- * @see defaultDeserializer
- * @see CCOptions
- *
- * Example code:
- *
- *   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
- *   NSString *baseDir = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
- *   NSString *databasePath = [baseDir stringByAppendingPathComponent:@"myDatabase.sqlite"];
- *
- *   YapDatabase *database = [[YapDatabase alloc] initWithPath:databasePath];
- **/
-- (id)initWithPath:(NSString *)path;
-
-/**
- * Opens or creates a sqlite database with the given path.
  * The given options are used instead of the default options.
  **/
 - (id)initWithPath:(NSString *)path
