@@ -339,9 +339,9 @@ static int connectionBusyHandler(void *ptr, int count) {
  **/
 - (BOOL)configureEncryptionForDatabase:(sqlite3 *)sqlite
 {
-    if (options.cipherKeyBlock)
+    if (_options.cipherKeyBlock)
     {
-        NSData *keyData = options.cipherKeyBlock();
+        NSData *keyData = _options.cipherKeyBlock();
         
         if (keyData == nil)
         {
@@ -350,7 +350,7 @@ static int connectionBusyHandler(void *ptr, int count) {
         }
         
         //Setting the PBKDF2 default iteration number (this will have effect next time database is opened)
-        if (options.cipherDefaultkdfIterNumber > 0) {
+        if (_options.cipherDefaultkdfIterNumber > 0) {
             char *errorMsg;
             NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA cipher_default_kdf_iter = %lu", (unsigned long)options.cipherDefaultkdfIterNumber];
             if (sqlite3_exec(sqlite, [pragmaCommand UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK)
@@ -361,9 +361,9 @@ static int connectionBusyHandler(void *ptr, int count) {
         }
         
         //Setting the PBKDF2 iteration number
-        if (options.kdfIterNumber > 0) {
+        if (_options.kdfIterNumber > 0) {
             char *errorMsg;
-            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA kdf_iter = %lu", (unsigned long)options.kdfIterNumber];
+            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA kdf_iter = %lu", (unsigned long)_options.kdfIterNumber];
             if (sqlite3_exec(sqlite, [pragmaCommand UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK)
             {
                 NSLog(@"failed to set database kdf_iter: %s", errorMsg);
@@ -372,9 +372,9 @@ static int connectionBusyHandler(void *ptr, int count) {
         }
         
         //Setting the encrypted database page size
-        if (options.cipherPageSize > 0) {
+        if (_options.cipherPageSize > 0) {
             char *errorMsg;
-            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA cipher_page_size = %lu", (unsigned long)options.cipherPageSize];
+            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA cipher_page_size = %lu", (unsigned long)_options.cipherPageSize];
             if (sqlite3_exec(sqlite, [pragmaCommand UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK)
             {
                 NSLog(@"failed to set database cipher_page_size: %s", errorMsg);
