@@ -352,7 +352,7 @@ static int connectionBusyHandler(void *ptr, int count) {
         //Setting the PBKDF2 default iteration number (this will have effect next time database is opened)
         if (_options.cipherDefaultkdfIterNumber > 0) {
             char *errorMsg;
-            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA cipher_default_kdf_iter = %lu", (unsigned long)options.cipherDefaultkdfIterNumber];
+            NSString *pragmaCommand = [NSString stringWithFormat:@"PRAGMA cipher_default_kdf_iter = %lu", (unsigned long)_options.cipherDefaultkdfIterNumber];
             if (sqlite3_exec(sqlite, [pragmaCommand UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK)
             {
                 NSLog(@"failed to set database cipher_default_kdf_iter: %s", errorMsg);
