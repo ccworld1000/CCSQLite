@@ -581,7 +581,7 @@ metadataPostSanitizer:(CCSQLitePostSanitizer)inMetadataPostSanitizer
             
             if (result) result = [self openDatabase];
 #ifdef SQLITE_HAS_CODEC
-            if (result) result = [self configureEncryptionForDatabase:db];
+            if (result) result = [self configureEncryptionForDatabase: _db];
 #endif
             if (result) result = [self configureDatabase:isNewDatabaseFile];
             if (result) result = [self createTables];
