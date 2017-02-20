@@ -1,7 +1,7 @@
 PODS:
-  - CCSQLite (1.0.0):
-    - CCSQLite/standard (= 1.0.0)
-  - CCSQLite/standard (1.0.0)
+  - CCSQLite (1.0.1):
+    - CCSQLite/standard (= 1.0.1)
+  - CCSQLite/standard (1.0.1)
 
 DEPENDENCIES:
   - CCSQLite (from `..`)
@@ -11,8 +11,8 @@ EXTERNAL SOURCES:
     :path: ".."
 
 SPEC CHECKSUMS:
-  CCSQLite: c9b88fd9ca1340f8c9b8f47ad2b340ef01078fa7
+  CCSQLite: 2292f8781aa40b64a52aecf0023cb45823440d7d
 
 PODFILE CHECKSUM: fd14c97eea24d220b944c85df7931d42124c874c
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0

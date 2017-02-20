@@ -1,6 +1,6 @@
 {
   "name": "CCSQLite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC)",
   "homepage": "https://github.com/ccworld1000/CCSQLite",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/ccworld1000/CCSQLite.git",
-    "tag": "1.0.0"
+    "tag": "1.0.1"
   },
   "requires_arc": true,
   "default_subspecs": "standard",
