@@ -252,12 +252,17 @@ static int connectionBusyHandler(void *ptr, int count) {
         }
     }
     
+#if SQLITE_VERSION_NUMBER >= 3007000
     status = sqlite3_exec(_db, "PRAGMA journal_mode = WAL;", NULL, NULL, NULL);
     if (status != SQLITE_OK)
     {
         NSLog(@"Error setting PRAGMA journal_mode: %d %s", status, sqlite3_errmsg(_db));
         return NO;
+    } else if (status == SQLITE_READONLY) {
+        NSLog(@"Attempt to write a readonly database : close journal_mode. or At the same time increase the database read and write permissions ");
+        status = SQLITE_OK; 
     }
+#endif
     
     if (isNewDatabaseFile)
     {
@@ -326,8 +331,10 @@ static int connectionBusyHandler(void *ptr, int count) {
     // YapDatabase has its own optimized checkpointing algorithm built-in.
     // It knows the state of every active connection for the database,
     // so it can invoke the checkpoint methods at the precise time in which a checkpoint can be most effective.
-    
+
+#if SQLITE_VERSION_NUMBER >= 3007000
     sqlite3_wal_autocheckpoint(_db, 0);
+#endif
     
     return YES;
 }
