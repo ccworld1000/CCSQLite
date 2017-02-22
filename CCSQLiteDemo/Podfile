@@ -7,6 +7,8 @@ target 'CCSQLiteiOSDemo' do
 
   # Pods for CCSQLiteiOSDemo
 	pod 'CCSQLite', path:'..'
+    pod 'Google/Analytics'
+    pod 'Google/SignIn' 
 end
 
 target 'CCSQLiteOSXDemo' do

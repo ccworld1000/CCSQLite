@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		009EA1B01E5160CE00285175 /* CCSQLiteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */; };
 		009EA1B11E5160CE00285175 /* CCSQLiteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */; };
+		00C44EA41E5D3CDA0012561B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00C44EA31E5D3CDA0012561B /* GoogleService-Info.plist */; };
 		18A7967F1E5115F300EE610C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A7967E1E5115F300EE610C /* main.m */; };
 		18A796821E5115F300EE610C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A796811E5115F300EE610C /* AppDelegate.m */; };
 		18A796851E5115F300EE610C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A796841E5115F300EE610C /* ViewController.m */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		009EA1AE1E5160CE00285175 /* CCSQLiteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSQLiteTest.h; sourceTree = "<group>"; };
 		009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSQLiteTest.m; sourceTree = "<group>"; };
+		00C44EA31E5D3CDA0012561B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18A7967A1E5115F300EE610C /* CCSQLiteiOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCSQLiteiOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A7967E1E5115F300EE610C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18A796801E5115F300EE610C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				18A796891E5115F300EE610C /* Assets.xcassets */,
 				18A7968B1E5115F300EE610C /* LaunchScreen.storyboard */,
 				18A7968E1E5115F300EE610C /* Info.plist */,
+				00C44EA31E5D3CDA0012561B /* GoogleService-Info.plist */,
 				18A7967D1E5115F300EE610C /* Supporting Files */,
 			);
 			path = CCSQLiteiOSDemo;
@@ -258,6 +261,7 @@
 				18A7968D1E5115F300EE610C /* LaunchScreen.storyboard in Resources */,
 				18A7968A1E5115F300EE610C /* Assets.xcassets in Resources */,
 				18A796881E5115F300EE610C /* Main.storyboard in Resources */,
+				00C44EA41E5D3CDA0012561B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
