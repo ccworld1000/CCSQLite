@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
+#import "CCKeyValue.h"
 #import "CCOptions.h"
 #import "CCSQLite.h"
 #import "CCStatement.h"
 #import "CCResultSet.h"
 #import "CCSQLiteQueue.h"
 #import "CCSQLitePool.h"
+
+FOUNDATION_EXTERN NSString *CCSQLiteCollection;
 
 
 #ifndef CCNULL

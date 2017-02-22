@@ -14,6 +14,13 @@
 
 #import <sqlite3.h>
 
+/**
+ *  avoid Yapdatabase repeat | [Embeded CCSQLiteCollection]
+ *  new add [Embeded CCSQLiteCollection]
+ */
+NSString *CCSQLiteDatabase2     = @"CCSQLite.Database2";
+NSString *CCSQLiteCollection    = @"CCSQLite.Collection";
+
 static int connectionBusyHandler(void *ptr, int count) {
     CCSQLite * currentDatabase = (__bridge CCSQLite*)ptr;
     
@@ -40,6 +47,8 @@ static int connectionBusyHandler(void *ptr, int count) {
     NSMutableSet        *_openFunctions;
     
     NSDateFormatter     *_dateFormat;
+    
+    dispatch_queue_t    defaultYapHandleQueue;
 }
 
 - (CCResultSet *)executeQuery:(NSString *)sql withArgumentsInArray:(NSArray*)arrayArgs orDictionary:(NSDictionary *)dictionaryArgs orVAList:(va_list)args;
@@ -58,11 +67,6 @@ static int connectionBusyHandler(void *ptr, int count) {
 {
     return [[self databasePath] stringByAppendingString:@"-shm"];
 }
-
-//- (CCOptions *)options
-//{
-//    return [_options copy];
-//}
 
 /**
  * The default serializer & deserializer use NSCoding (NSKeyedArchiver & NSKeyedUnarchiver).
@@ -405,16 +409,16 @@ static int connectionBusyHandler(void *ptr, int count) {
  * Creates the database tables we need:
  *
  * - yap2      : stores snapshot and metadata for extensions
- * - database2 : stores collection/key/value/metadata rows
+ * - CCSQLite.Database2 : stores collection/key/value/metadata rows
  **/
 - (BOOL)createTables
 {
     int status;
     
     char *createDatabaseTableStatement =
-    "CREATE TABLE IF NOT EXISTS \"database2\""
+    "CREATE TABLE IF NOT EXISTS \"CCSQLite.Database2\""
     " (\"rowid\" INTEGER PRIMARY KEY,"
-    "  \"collection\" CHAR NOT NULL,"
+    "  \"collection\" CHAR NOT NULL UNIQUE,"
     "  \"key\" CHAR NOT NULL,"
     "  \"data\" BLOB,"
     "  \"metadata\" BLOB"
@@ -423,18 +427,22 @@ static int connectionBusyHandler(void *ptr, int count) {
     status = sqlite3_exec(_db, createDatabaseTableStatement, NULL, NULL, NULL);
     if (status != SQLITE_OK)
     {
-        NSLog(@"Failed creating 'database2' table: %d %s", status, sqlite3_errmsg(_db));
+        NSLog(@"Failed creating 'CCSQLite.Database2' table: %d %s", status, sqlite3_errmsg(_db));
         return NO;
     }
     
     char *createIndexStatement =
-    "CREATE UNIQUE INDEX IF NOT EXISTS \"true_primary_key\" ON \"database2\" ( \"collection\", \"key\" );";
+    "CREATE UNIQUE INDEX IF NOT EXISTS \"true_primary_key\" ON \"CCSQLite.Database2\" ( \"collection\", \"key\" );";
     
     status = sqlite3_exec(_db, createIndexStatement, NULL, NULL, NULL);
     if (status != SQLITE_OK)
     {
-        NSLog(@"Failed creating index on 'database2' table: %d %s", status, sqlite3_errmsg(_db));
+        NSLog(@"Failed creating index on 'CCSQLite.Database2' table: %d %s", status, sqlite3_errmsg(_db));
         return NO;
+    }
+    
+    if (!defaultYapHandleQueue) {
+        defaultYapHandleQueue = dispatch_queue_create("CCSQLite.database2.defaultYapHandleQueue", NULL);
     }
     
     return YES;
@@ -774,7 +782,7 @@ metadataPostSanitizer:(CCSQLitePostSanitizer)inMetadataPostSanitizer
 }
 
 + (NSString*)CCUserVersion {
-    return @"1.0.0";
+    return @"1.1.1";
 }
 
 // returns 0x0240 for version 2.4.  This makes it super easy to do things like:
