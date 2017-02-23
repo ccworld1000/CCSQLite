@@ -18,7 +18,6 @@
 @implementation AppDelegate
 
 - (void) loadingFlurry {
-//    [Flurry setDebugLogEnabled:YES];
     [Flurry startSession:@"XCQMR4SBC4DTXNV44822"];
 }
 
