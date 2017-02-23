@@ -9,12 +9,18 @@
 #import "AppDelegate.h"
 #import "CCSQLiteTest.h"
 #import <Google/Analytics.h>
+#import <Flurry.h>
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
+
+- (void) loadingFlurry {
+//    [Flurry setDebugLogEnabled:YES];
+    [Flurry startSession:@"XCQMR4SBC4DTXNV44822"];
+}
 
 - (void) loadingGA {
     NSError *configureError;
@@ -29,6 +35,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self loadingFlurry];
     [self loadingGA];
     [CCSQLiteTest SQLiteTest];
     return YES;
