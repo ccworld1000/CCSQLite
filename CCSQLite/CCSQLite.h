@@ -17,6 +17,7 @@
 #import "CCSQLiteQueue.h"
 #import "CCSQLitePool.h"
 
+FOUNDATION_EXTERN NSString *CCSQLiteDatabase2;
 FOUNDATION_EXTERN NSString *CCSQLiteCollection;
 
 

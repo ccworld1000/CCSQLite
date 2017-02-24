@@ -418,7 +418,7 @@ static int connectionBusyHandler(void *ptr, int count) {
     char *createDatabaseTableStatement =
     "CREATE TABLE IF NOT EXISTS \"CCSQLite.Database2\""
     " (\"rowid\" INTEGER PRIMARY KEY,"
-    "  \"collection\" CHAR NOT NULL UNIQUE,"
+    "  \"collection\" CHAR NOT NULL,"
     "  \"key\" CHAR NOT NULL,"
     "  \"data\" BLOB,"
     "  \"metadata\" BLOB"

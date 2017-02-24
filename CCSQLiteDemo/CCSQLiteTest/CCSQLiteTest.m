@@ -77,7 +77,22 @@
         return 0;
     }];
     
+    
     [SQLite close];
+
+
+    
+
+    [[CCKeyValue defaultKeyValueWithPath:path] setObject:@"CC china 1112" key:@"china key"];
+    [[CCKeyValue defaultKeyValueWithPath:path] setObject:@"CCVV" key:@"CC"];
+    
+    id test = [[CCKeyValue defaultKeyValueWithPath:path] objectForKey:@"CC"];
+    NSLog(@"test 1 : %@", test);
+    
+    [[CCKeyValue defaultKeyValueWithPath:path] setObject:@[@1, @2, @3] key:@"CA"];
+    
+    test = [[CCKeyValue defaultKeyValueWithPath:path] objectForKey:@"CA"];
+    NSLog(@"test 2 : %@", test);
     
     CCSQLiteQueue *queue = [CCSQLiteQueue databaseQueueWithPath:path];
     
