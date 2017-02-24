@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CCSQLite'
-  s.version = '1.1.1'
+  s.version = '1.1.2'
   s.summary = 'A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC), CCSQLite 支持 iOS与OSX (Objective-C 封装的SQLite. 结合YapDatabase(key/value store) + FMDB (ARC)).'
   s.homepage = 'https://github.com/ccworld1000/CCSQLite'
   s.license = { :type => 'MIT', :file => 'LICENSE.txt' }
