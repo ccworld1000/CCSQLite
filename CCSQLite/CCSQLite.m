@@ -47,8 +47,6 @@ static int connectionBusyHandler(void *ptr, int count) {
     NSMutableSet        *_openFunctions;
     
     NSDateFormatter     *_dateFormat;
-    
-    dispatch_queue_t    defaultYapHandleQueue;
 }
 
 - (CCResultSet *)executeQuery:(NSString *)sql withArgumentsInArray:(NSArray*)arrayArgs orDictionary:(NSDictionary *)dictionaryArgs orVAList:(va_list)args;
@@ -440,11 +438,7 @@ static int connectionBusyHandler(void *ptr, int count) {
         NSLog(@"Failed creating index on 'CCSQLite.Database2' table: %d %s", status, sqlite3_errmsg(_db));
         return NO;
     }
-    
-    if (!defaultYapHandleQueue) {
-        defaultYapHandleQueue = dispatch_queue_create("CCSQLite.database2.defaultYapHandleQueue", NULL);
-    }
-    
+
     return YES;
 }
 

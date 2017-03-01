@@ -183,6 +183,28 @@ or
 
 ```
 
+# CCKeyValue demo code
+```objective-c
+    CCKeyValue *kv = [CCKeyValue defaultKeyValueWithPath:path];
+    kv.valueType = CCKeyValueTypeJson;
+    
+    NSData * data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CCJSON" ofType:@"json"]];
+    
+    [kv setObject:data key:@"jsonkey"];
+    
+    id CCJSON =  [kv objectForKey:@"jsonkey"];
+    
+    if ([CCJSON isKindOfClass:[NSArray class]]) {
+        NSArray *list = CCJSON;
+        
+        [list enumerateObjectsUsingBlock:^(NSDictionary *d, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSLog(@"%@\n", d);
+        }];
+    }
+```
+result
+![CCKeyValue Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/CCKeyValue.png?raw=true)
+
 # MIT License
 ***
 

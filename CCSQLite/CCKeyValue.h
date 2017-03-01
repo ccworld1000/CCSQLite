@@ -32,6 +32,11 @@ typedef NS_ENUM(NSInteger, CCKeyValueType) {
     CCKeyValueTypeJson,
 };
 
+/**
+ *  Embeded CCSQLite.Collection in table 'CCSQLite.Database2'
+ *  because of use CCSQLiteQueue, you should Use alone
+ *  CCKeyValue can replace NSUserDefaults or simple data type or key value type [Lightweight data] [Lightweight cache]
+ */
 @interface CCKeyValue : NSObject
 
 /**

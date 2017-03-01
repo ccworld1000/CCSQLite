@@ -6,7 +6,7 @@ target 'CCSQLiteiOSDemo' do
   # use_frameworks!
 
   # Pods for CCSQLiteiOSDemo
-	pod 'CCSQLite', path:'..'
+	pod 'CCSQLite'
     pod 'Google/Analytics'
     pod 'Google/SignIn'
     
@@ -19,5 +19,5 @@ target 'CCSQLiteOSXDemo' do
   # use_frameworks!
 
   # Pods for CCSQLiteOSXDemo
-	pod 'CCSQLite', path:'..'
+	pod 'CCSQLite'
 end

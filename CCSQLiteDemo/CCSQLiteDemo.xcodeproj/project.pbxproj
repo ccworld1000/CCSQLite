@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001815761E66B4BD00BD65FF /* CCJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 001815751E66B4BD00BD65FF /* CCJSON.json */; };
+		001815771E66B53100BD65FF /* CCJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 001815751E66B4BD00BD65FF /* CCJSON.json */; };
 		009EA1B01E5160CE00285175 /* CCSQLiteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */; };
 		009EA1B11E5160CE00285175 /* CCSQLiteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */; };
 		00C44EA41E5D3CDA0012561B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00C44EA31E5D3CDA0012561B /* GoogleService-Info.plist */; };
@@ -26,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		001815751E66B4BD00BD65FF /* CCJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CCJSON.json; sourceTree = "<group>"; };
 		009EA1AE1E5160CE00285175 /* CCSQLiteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSQLiteTest.h; sourceTree = "<group>"; };
 		009EA1AF1E5160CE00285175 /* CCSQLiteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSQLiteTest.m; sourceTree = "<group>"; };
 		00C44EA31E5D3CDA0012561B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -76,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001815741E66B4BD00BD65FF /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				001815751E66B4BD00BD65FF /* CCJSON.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
 		009EA1AD1E51609500285175 /* CCSQLiteTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +99,7 @@
 		18A7966F1E51157500EE610C = {
 			isa = PBXGroup;
 			children = (
+				001815741E66B4BD00BD65FF /* JSON */,
 				009EA1AD1E51609500285175 /* CCSQLiteTest */,
 				18A7967C1E5115F300EE610C /* CCSQLiteiOSDemo */,
 				18A796971E51161700EE610C /* CCSQLiteOSXDemo */,
@@ -258,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001815761E66B4BD00BD65FF /* CCJSON.json in Resources */,
 				18A7968D1E5115F300EE610C /* LaunchScreen.storyboard in Resources */,
 				18A7968A1E5115F300EE610C /* Assets.xcassets in Resources */,
 				18A796881E5115F300EE610C /* Main.storyboard in Resources */,
@@ -270,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A796A21E51161700EE610C /* Assets.xcassets in Resources */,
+				001815771E66B53100BD65FF /* CCJSON.json in Resources */,
 				18A796A51E51161800EE610C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

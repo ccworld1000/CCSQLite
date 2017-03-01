@@ -1,7 +1,11 @@
 Pod::Spec.new do |s|
   s.name = 'CCSQLite'
-  s.version = '1.1.2'
-  s.summary = 'A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC), CCSQLite 支持 iOS与OSX (Objective-C 封装的SQLite. 结合YapDatabase(key/value store) + FMDB (ARC)).'
+  s.version = '1.2.0'
+  s.summary = '
+A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC),
+CCKeyValue can replace NSUserDefaults or simple data type or key value type [Lightweight data] [Lightweight cache]. 
+CCSQLite 支持 iOS与OSX (Objective-C 封装的SQLite. 结合YapDatabase(key/value store) + FMDB (ARC)),
+CCKeyValue可替换NSUserDefaults 或 简单数据类型 或 键值类型 [轻量级数据] [轻量级缓存].'
   s.homepage = 'https://github.com/ccworld1000/CCSQLite'
   s.license = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author = { 'CC' => 'ccworld1000@gmail.com' }
