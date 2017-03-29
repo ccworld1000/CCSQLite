@@ -6,12 +6,8 @@ target 'CCSQLiteiOSDemo' do
   # use_frameworks!
 
   # Pods for CCSQLiteiOSDemo
+    pod 'CCStat'
 	pod 'CCSQLite'
-    pod 'Google/Analytics'
-    pod 'Google/SignIn'
-    
-    pod 'Flurry-iOS-SDK/FlurrySDK'
-    pod 'Flurry-iOS-SDK/FlurryAds'
 end
 
 target 'CCSQLiteOSXDemo' do

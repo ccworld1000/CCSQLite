@@ -8,8 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CCSQLiteTest.h"
-#import <Google/Analytics.h>
-#import <Flurry.h>
+#import <CCStat.h>
 
 @interface AppDelegate ()
 
@@ -17,25 +16,11 @@
 
 @implementation AppDelegate
 
-- (void) loadingFlurry {
-    [Flurry startSession:@"XCQMR4SBC4DTXNV44822"];
-}
-
-- (void) loadingGA {
-    NSError *configureError;
-    [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
-    // Optional: configure GAI options.
-    GAI *gai = [GAI sharedInstance];
-    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
-    gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [self loadingFlurry];
-    [self loadingGA];
+    [CCStat loadingMobStat:CCStatTypeCCSQLite showDetail:NO];
+    
     [CCSQLiteTest SQLiteTest];
     return YES;
 }
