@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CCSQLite'
-  s.version = '1.2.1'
+  s.version = '2.0.0'
   s.summary = '
 A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC),
 CCKeyValue can replace NSUserDefaults or simple data type or key value type [Lightweight data] [Lightweight cache]. 

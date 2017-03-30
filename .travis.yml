@@ -12,5 +12,7 @@ before_install:
 
 script:
  - cd ./CCSQLiteDemo
- - pod install
+ - pod update
  - cd ..
+notifications:
+email: false
