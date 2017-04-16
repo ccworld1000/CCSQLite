@@ -95,34 +95,6 @@
     }
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-
-- (NSDictionary*)resultDict {
-    
-    NSUInteger num_cols = (NSUInteger)sqlite3_data_count([_statement statement]);
-    
-    if (num_cols > 0) {
-        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:num_cols];
-        
-        NSEnumerator *columnNames = [[self columnNameToIndexMap] keyEnumerator];
-        NSString *columnName = nil;
-        while ((columnName = [columnNames nextObject])) {
-            id objectValue = [self objectForColumnName:columnName];
-            [dict setObject:objectValue forKey:columnName];
-        }
-        
-        return CCReturnAutoreleased([dict copy]);
-    }
-    else {
-        NSLog(@"Warning: There seem to be no columns in this set.");
-    }
-    
-    return nil;
-}
-
-#pragma clang diagnostic pop
-
 - (NSDictionary*)resultDictionary {
     
     NSUInteger num_cols = (NSUInteger)sqlite3_data_count([_statement statement]);

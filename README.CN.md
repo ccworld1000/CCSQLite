@@ -61,11 +61,11 @@ pod 'CCSQLite'
 
 ***
 # 演示
-###see CCSQLiteDemo/
+### see CCSQLiteDemo/
 
-###iOS CCSQLiteiOSDemo
+### iOS CCSQLiteiOSDemo
 
-###OSX CCSQLiteOSXDemo
+### OSX CCSQLiteOSXDemo
 
 # 演示代码 CCSQLiteTest
 ```objective-c

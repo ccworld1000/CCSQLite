@@ -17,6 +17,10 @@
 #import "CCSQLiteQueue.h"
 #import "CCSQLitePool.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-interface-ivars"
+#pragma clang diagnostic ignored "-Wnullability-completeness"
+
 FOUNDATION_EXTERN NSString *CCSQLiteDatabase2;
 FOUNDATION_EXTERN NSString *CCSQLiteCollection;
 
@@ -88,9 +92,6 @@ typedef int(^CCExecuteStatementsCallbackBlock)(NSDictionary *resultsDictionary);
  @warning Do not instantiate a single `CCSQLite` object and use it across multiple threads. Instead, use `<CCSQLiteQueue>`.
  
  */
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wobjc-interface-ivars"
 
 #pragma mark YapDatabase
 /**
@@ -513,15 +514,6 @@ metadataPostSanitizer:(nullable CCSQLitePostSanitizer)metadataPostSanitizer
  */
 
 - (BOOL)executeUpdate:(NSString*)sql withErrorAndBindings:(NSError**)outErr, ...;
-
-/** Execute single update statement
- 
- @see executeUpdate:withErrorAndBindings:
- 
- @warning **Deprecated**: Please use `<executeUpdate:withErrorAndBindings>` instead.
- */
-
-- (BOOL)update:(NSString*)sql withErrorAndBindings:(NSError**)outErr, ... __attribute__ ((deprecated));
 
 /** Execute single update statement
  
@@ -1533,22 +1525,6 @@ metadataPostSanitizer:(nullable CCSQLitePostSanitizer)metadataPostSanitizer
 
 - (BOOL)columnExists:(NSString*)columnName inTableWithName:(NSString*)tableName;
 
-/** Test to see if particular column exists for particular table in database
- 
- @param columnName The name of the column.
- 
- @param tableName The name of the table.
- 
- @return `YES` if column exists in table in question; `NO` otherwise.
- 
- @see columnExists:inTableWithName:
- 
- @warning Deprecated - use `<columnExists:inTableWithName:>` instead.
- */
-
-- (BOOL)columnExists:(NSString*)tableName columnName:(NSString*)columnName __attribute__ ((deprecated));
-
-
 /** Validate SQL statement
  
  This validates SQL statement by performing `sqlite3_prepare_v2`, but not returning the results, but instead immediately calling `sqlite3_finalize`.
@@ -1564,3 +1540,5 @@ metadataPostSanitizer:(nullable CCSQLitePostSanitizer)metadataPostSanitizer
 - (BOOL)validateSQL:(NSString*)sql error:(NSError**)error;
 
 @end
+
+#pragma clang diagnostic pop

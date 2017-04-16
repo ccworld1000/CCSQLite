@@ -7,7 +7,7 @@ target 'CCSQLiteiOSDemo' do
 
   # Pods for CCSQLiteiOSDemo
     pod 'CCStat'
-	pod 'CCSQLite'
+	pod 'CCSQLite', path: ".."
 end
 
 target 'CCSQLiteOSXDemo' do
@@ -15,5 +15,5 @@ target 'CCSQLiteOSXDemo' do
   # use_frameworks!
 
   # Pods for CCSQLiteOSXDemo
-	pod 'CCSQLite'
+	pod 'CCSQLite', path: ".."
 end

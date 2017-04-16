@@ -445,15 +445,6 @@
 
 - (NSDictionary*)resultDictionary;
 
-/** Returns a dictionary of the row results
- 
- @see resultDictionary
- 
- @warning **Deprecated**: Please use `<resultDictionary>` instead.  Also, beware that `<resultDictionary>` is case sensitive!
- */
-
-- (NSDictionary*)resultDict  __attribute__ ((deprecated));
-
 ///-----------------------------
 /// @name Key value coding magic
 ///-----------------------------

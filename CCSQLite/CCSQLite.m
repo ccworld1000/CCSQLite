@@ -207,7 +207,11 @@ static int connectionBusyHandler(void *ptr, int count) {
     
     int flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_NOMUTEX | SQLITE_OPEN_PRIVATECACHE;
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
     int status = sqlite3_open_v2([[self databasePath] UTF8String], &_db, flags, NULL);
+#pragma clang diagnostic pop
+    
     if (status != SQLITE_OK)
     {
         // There are a few reasons why the database might not open.
@@ -1953,21 +1957,6 @@ int CCExecuteBulkSQLCallback(void *theBlockAsVoid, int columns, char **values, c
     return result;
 }
 
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-- (BOOL)update:(NSString*)sql withErrorAndBindings:(NSError**)outErr, ... {
-    va_list args;
-    va_start(args, outErr);
-    
-    BOOL result = [self executeUpdate:sql error:outErr withArgumentsInArray:nil orDictionary:nil orVAList:args];
-    
-    va_end(args);
-    return result;
-}
-
-#pragma clang diagnostic pop
-
 #pragma mark Transactions
 
 - (BOOL)rollback {
@@ -2345,16 +2334,6 @@ return ret;
     [rs next];
     [rs close];
 }
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-
-- (BOOL)columnExists:(NSString*)tableName columnName:(NSString*)columnName __attribute__ ((deprecated)) {
-    return [self columnExists:columnName inTableWithName:tableName];
-}
-
-#pragma clang diagnostic pop
-
 
 - (BOOL)validateSQL:(NSString*)sql error:(NSError**)error {
     sqlite3_stmt *pStmt = NULL;

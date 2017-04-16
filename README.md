@@ -1,5 +1,7 @@
 ###### CCSQLite for iOS && OSX (A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC))
 =======================
+
+
 [![Apps Using](https://img.shields.io/cocoapods/at/CCSQLite.svg?label=Apps%20Using%20CCSQLite&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite) [![Downloads](https://img.shields.io/cocoapods/dt/CCSQLite.svg?label=Total%20Downloads&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite)
 
 [![Platform](https://img.shields.io/badge/platforms-iOS%20%7C%20OSX-orange.svg)](https://github.com/ccworld1000/CCSQLite.git)
@@ -13,7 +15,8 @@ support MAC OSX and iOS
 
 [https://github.com/ccworld1000/CCSQLite.git](https://github.com/ccworld1000/CCSQLite.git)
 
-##bug 
+## bug 
+
 Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
 
 ***
@@ -62,11 +65,11 @@ pod 'CCSQLite'
 ***
 
 # demo
-###see CCSQLiteDemo/
+### see CCSQLiteDemo/
 
-###iOS CCSQLiteiOSDemo
+### iOS CCSQLiteiOSDemo
 
-###OSX CCSQLiteOSXDemo
+### OSX CCSQLiteOSXDemo
 
 # demo code
 ```objective-c
@@ -210,7 +213,7 @@ result
 
 MIT License
 
-Copyright (c) 2016-2017 ccworld1000 | bug : <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
+Copyright (c) 2016-now ccworld1000 | bug : <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
