@@ -2355,6 +2355,73 @@ return ret;
     return validationSucceeded;
 }
 
+- (SqliteValueType)valueType:(void *)value {
+    return sqlite3_value_type(value);
+}
+
+- (int)valueInt:(void *)value {
+    return sqlite3_value_int(value);
+}
+
+- (long long)valueLong:(void *)value {
+    return sqlite3_value_int64(value);
+}
+
+- (double)valueDouble:(void *)value {
+    return sqlite3_value_double(value);
+}
+
+- (NSData *)valueData:(void *)value {
+    const void *bytes = sqlite3_value_blob(value);
+    int length = sqlite3_value_bytes(value);
+    return bytes ? [NSData dataWithBytes:bytes length:(NSUInteger)length] : nil;
+}
+
+- (NSString *)valueString:(void *)value {
+    const char *cString = (const char *)sqlite3_value_text(value);
+    return cString ? [NSString stringWithUTF8String:cString] : nil;
+}
+
+- (void)resultNullInContext:(void *)context {
+    sqlite3_result_null(context);
+}
+
+- (void)resultInt:(int) value context:(void *)context {
+    sqlite3_result_int(context, value);
+}
+
+- (void)resultLong:(long long)value context:(void *)context {
+    sqlite3_result_int64(context, value);
+}
+
+- (void)resultDouble:(double)value context:(void *)context {
+    sqlite3_result_double(context, value);
+}
+
+- (void)resultData:(NSData *)data context:(void *)context {
+    sqlite3_result_blob(context, data.bytes, (int)data.length, SQLITE_TRANSIENT);
+}
+
+- (void)resultString:(NSString *)value context:(void *)context {
+    sqlite3_result_text(context, [value UTF8String], -1, SQLITE_TRANSIENT);
+}
+
+- (void)resultError:(NSString *)error context:(void *)context {
+    sqlite3_result_error(context, [error UTF8String], -1);
+}
+
+- (void)resultErrorCode:(int)errorCode context:(void *)context {
+    sqlite3_result_error_code(context, errorCode);
+}
+
+- (void)resultErrorNoMemoryInContext:(void *)context {
+    sqlite3_result_error_nomem(context);
+}
+
+- (void)resultErrorTooBigInContext:(void *)context {
+    sqlite3_result_error_toobig(context);
+}
+
 @end
 
 
