@@ -1695,6 +1695,26 @@ typedef NS_ENUM(int, SqliteValueType) {
 
 - (BOOL)validateSQL:(NSString*)sql error:(NSError**)error;
 
+#pragma mark key <-> data
+
+/**
+ *  object2Data
+ *
+ *  @param object object description
+ *
+ *  @return return value description
+ */
++ (NSData *) object2Data : (id) object;
+
+/**
+ *  data2Object
+ *
+ *  @param object object description
+ *
+ *  @return return value description
+ */
++ (id) data2Object : (id) data;
+
 @end
 
 #pragma clang diagnostic pop

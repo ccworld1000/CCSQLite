@@ -2422,6 +2422,44 @@ return ret;
     sqlite3_result_error_toobig(context);
 }
 
+#pragma mark key <-> data
+
+/**
+ *  object2Data
+ *
+ *  @param object object description
+ *
+ *  @return return value description
+ */
++ (NSData *) object2Data : (id) object {
+    if ([object isKindOfClass:[NSString class]]) {
+        NSString *data = object;
+        return [data dataUsingEncoding:NSUTF8StringEncoding];
+    } else if ([object isKindOfClass:[NSData class]]) {
+        return object;
+    } else if ([object isKindOfClass:[NSArray class]] || [object isKindOfClass:[NSDictionary class]]) {
+        return [NSJSONSerialization dataWithJSONObject:object options:0 error: nil];
+    } else {
+        NSLog(@"error args for object");
+        return nil;
+    }
+}
+
+/**
+ *  data2Object
+ *
+ *  @param object object description
+ *
+ *  @return return value description
+ */
++ (id) data2Object : (id) data {
+    if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSDictionary class]]) {
+        return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    }
+    
+    return data;
+}
+
 @end
 
 
