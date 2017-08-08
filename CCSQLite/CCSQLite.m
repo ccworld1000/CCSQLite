@@ -2453,7 +2453,7 @@ return ret;
  *  @return return value description
  */
 + (id) data2Object : (id) data {
-    if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSDictionary class]]) {
+    if (data && [data isKindOfClass:[NSData class]]) {
         return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     }
     
