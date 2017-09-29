@@ -81,6 +81,10 @@
         isOK = [db executeUpdate:@"insert into 'CCSQLite.Database2' (collection, key, data, metadata) values (?, ?, ?, ?);", c, key, data, metadata];
         
         if (!isOK) {
+            isOK = [db executeUpdate:@"update 'CCSQLite.Database2' set collection = ? , key = ? , data = ? , metadata = ? ;", c, key, data, metadata];
+        }
+        
+        if (!isOK) {
             NSLog(@"execute excpetion!");
         }
         
