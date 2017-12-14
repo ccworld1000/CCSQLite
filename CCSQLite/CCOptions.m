@@ -37,10 +37,8 @@
 @synthesize aggressiveWALTruncationSize = aggressiveWALTruncationSize;
 @synthesize enableMultiProcessSupport = enableMultiProcessSupport;
 
-- (id)init
-{
-    if ((self = [super init]))
-    {
+- (id) init {
+    if ((self = [super init])) {
         corruptAction = CCOptionsCorruptAction_Rename;
         pragmaSynchronous = CCOptionsPragmaSynchronous_Full;
         pragmaJournalSizeLimit = 0;
@@ -52,9 +50,9 @@
     return self;
 }
 
-- (id)copyWithZone:(NSZone __unused *)zone
-{
-    CCOptions *copy = [[[self class] alloc] init];
+- (id) copyWithZone:(NSZone __unused *)zone {
+    CCOptions * copy = [[[self class] alloc] init];
+
     copy->corruptAction = corruptAction;
     copy->pragmaSynchronous = pragmaSynchronous;
     copy->pragmaJournalSizeLimit = pragmaJournalSizeLimit;
@@ -68,7 +66,7 @@
 #endif
     copy->aggressiveWALTruncationSize = aggressiveWALTruncationSize;
     copy->enableMultiProcessSupport = enableMultiProcessSupport;
-    
+
     return copy;
 }
 

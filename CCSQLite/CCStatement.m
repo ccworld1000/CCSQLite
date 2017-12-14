@@ -11,28 +11,28 @@
 
 @implementation CCStatement
 
-- (void)dealloc {
+- (void) dealloc {
     [self close];
 }
 
-- (void)close {
+- (void) close {
     if (_statement) {
         sqlite3_finalize(_statement);
         _statement = CCNULL;
     }
-    
+
     _inUse = NO;
 }
 
-- (void)reset {
+- (void) reset {
     if (_statement) {
         sqlite3_reset(_statement);
     }
-    
+
     _inUse = NO;
 }
 
-- (NSString*)description {
+- (NSString *) description {
     return [NSString stringWithFormat:@"%@ %ld hit(s) for query %@", [super description], _useCount, _query];
 }
 
