@@ -4,6 +4,7 @@ Podfile.lock
 .DS_Store  
 CCSQLiteDemo/Podfile.lock
 CCSQLiteDemo/Pods
+CCSQLiteDemo/Podfile.backup
 Pods/
 build/  
 *.pbxuser  
