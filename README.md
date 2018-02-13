@@ -1,77 +1,62 @@
-###### CCSQLite for iOS && OSX (A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC)). CCSQLite 支持 iOS与OSX (Objective-C 封装的SQLite. 结合YapDatabase(key/value store) + FMDB (ARC)).【Support macOSX and iOS】
-=======================
-
-
-[![Apps Using](https://img.shields.io/cocoapods/at/CCSQLite.svg?label=Apps%20Using%20CCSQLite&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite) [![Downloads](https://img.shields.io/cocoapods/dt/CCSQLite.svg?label=Total%20Downloads&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite)
-
+[![Apps Using](https://img.shields.io/cocoapods/at/CCSQLite.svg?label=Apps%20Using%20CCSQLite&colorB=28B9FE)](https://github.com/ccworld1000/CCSQLite) [![Downloads](https://img.shields.io/cocoapods/dt/CCSQLite.svg?label=Total%20Downloads&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite)
 [![Platform](https://img.shields.io/badge/platforms-iOS%20%7C%20OSX-orange.svg)](https://github.com/ccworld1000/CCSQLite.git)
 [![Languages](https://img.shields.io/badge/languages-ObjC-orange.svg)](https://github.com/ccworld1000/CCSQLite)
-
+![Swift 3.0.x](https://img.shields.io/badge/Swift-4.0.x-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/CCSQLite.svg)](https://github.com/ccworld1000/CCSQLite.git)
 [![License](https://img.shields.io/cocoapods/l/CCSQLite.svg)](https://github.com/ccworld1000/CCSQLite/blob/master/LICENSE/LICENSE.CCSQLite.txt)
 
+### CCSQLite A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB.
 
-support MAC OSX and iOS
+##### bug or suggest
 
-[https://github.com/ccworld1000/CCSQLite.git](https://github.com/ccworld1000/CCSQLite.git)
-
-## bug 
-
-Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
+QQ Email ：<a href="mailto:2291108617@qq.com">2291108617@qq.com</a>
+G Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
+**[Suggestion to send at the same time]**
 
 ***
-# CCSQLite
+###  CCSQLite
 ***
-PURPOSE : YapDatabase(key/value store) + FMDB
-
 [CN README](README.CN.md)
 
 ***
-# Reason && Why
-***
-when i wirte "HSCache [cache hanlde]", i want to chose FMDB or YapDatabase, but But they look different. so i just want [YapDatabase(key/value store) + FMDB], and CCSQLite on the way.
-
-# Reference
-[FMDB](https://github.com/ccgus/fmdb) 
-
-[YapDatabase](https://github.com/yapstudios/YapDatabase)
-
-***
-# PURPOSE
+###  PURPOSE
 * adjust FMDB to ARC mode
 * YapDatabase key/value store 
 * CCSQLite Combine FMDB + YapDatabase key/value
+* Support OBJECT, JSON to key/value
 
 ***
 
-# Greater than Version 1.1.1 Change
+***
+###  Reason && Why
+***
+when i wirte "HSCache [cache hanlde]", i want to chose FMDB or YapDatabase, but But they look different. so i just want [YapDatabase(key/value store) + FMDB], and CCSQLite on the way.
+
+
+###  Greater than Version 1.1.1 Change
 ***
 ![CCSQLite CCSQLiteMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
 
-## Podfile
+###  Podfile
 
 ```ruby
 pod 'CCSQLite'
 ```
 
 ***
-# Usage && Migrate
-***
 
-[Usage : Similar FMDB, just repalce "FM\*" to "CC\*"] (https://github.com/ccgus/fmdb/blob/master/README.markdown)
+### demo
 
-[more detail](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
+#### for Objective-C
+##### see CCSQLiteDemo
+##### iOS CCSQLiteiOSDemo
+##### OSX CCSQLiteOSXDemo
 
-***
+### for Swift call Objective-C
+##### iOS CCSQLiteDataiOS
+##### OSX CCSQLiteDatamacOS
 
-# demo
-### see CCSQLiteDemo/
-
-### iOS CCSQLiteiOSDemo
-
-### OSX CCSQLiteOSXDemo
-
-# demo code
+### demo code
 ```objective-c
 #import <CCSQLite.h>
 ```
@@ -79,6 +64,11 @@ or
 
 ```objective-c
 #import "CCSQLite.h"
+```
+or
+
+```objective-c
+#import "CCSQLite/CCSQLite.h"
 ```
 
 
@@ -186,7 +176,7 @@ or
 
 ```
 
-# CCKeyValue demo code
+### CCKeyValue demo code
 ```objective-c
     CCKeyValue *kv = [CCKeyValue defaultKeyValueWithPath:path];
     kv.valueType = CCKeyValueTypeJson;
@@ -208,12 +198,26 @@ or
 result
 ![CCKeyValue Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/CCKeyValue.png?raw=true)
 
-# MIT License
+### Swift call Objective-C
+
+```swift
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        CCSQLiteData.writeList()
+        if let list = CCSQLiteData.readList() {
+            print(list)
+        }
+    }
+```
+
+### MIT License
 ***
 
 MIT License
 
-Copyright (c) 2016-now ccworld1000 | bug : <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
+Copyright (c) 2016-now ccworld1000 | bug : <a href="mailto:2291108617@qq.com">2291108617@qq.com</a> and <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -234,7 +238,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ***
-# Other LICENSE
+### Other LICENSE
 ***
 
 [FMDB LICENSE](LICENSE/LICENSE.FMDB.txt) 

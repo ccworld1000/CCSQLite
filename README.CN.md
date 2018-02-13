@@ -1,37 +1,22 @@
-###### CCSQLite for iOS && OSX (A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB (ARC)). CCSQLite 支持 iOS与OSX (Objective-C 封装的SQLite. 结合YapDatabase(key/value store) + FMDB (ARC)).【Support macOSX and iOS】
-=======================
-[![Apps Using](https://img.shields.io/cocoapods/at/CCSQLite.svg?label=Apps%20Using%20CCSQLite&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite) [![Downloads](https://img.shields.io/cocoapods/dt/CCSQLite.svg?label=Total%20Downloads&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite)
-
+[![Apps Using](https://img.shields.io/cocoapods/at/CCSQLite.svg?label=Apps%20Using%20CCSQLite&colorB=28B9FE)](https://github.com/ccworld1000/CCSQLite) [![Downloads](https://img.shields.io/cocoapods/dt/CCSQLite.svg?label=Total%20Downloads&colorB=28B9FE)](http://cocoapods.org/pods/CCSQLite)
 [![Platform](https://img.shields.io/badge/platforms-iOS%20%7C%20OSX-orange.svg)](https://github.com/ccworld1000/CCSQLite.git)
 [![Languages](https://img.shields.io/badge/languages-ObjC-orange.svg)](https://github.com/ccworld1000/CCSQLite)
-
+![Swift 3.0.x](https://img.shields.io/badge/Swift-4.0.x-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/CCSQLite.svg)](https://github.com/ccworld1000/CCSQLite.git)
 [![License](https://img.shields.io/cocoapods/l/CCSQLite.svg)](https://github.com/ccworld1000/CCSQLite/blob/master/LICENSE/LICENSE.CCSQLite.txt)
 
+### CCSQLite Objective-C 封装的SQLite. 结合YapDatabase(key/value store) + FMDB.
 
-support MAC OSX and iOS
+##### bug or suggest
 
-[https://github.com/ccworld1000/CCSQLite.git](https://github.com/ccworld1000/CCSQLite.git)
-
-##bug 
-Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
+QQ Email ：<a href="mailto:2291108617@qq.com">2291108617@qq.com</a>
+G Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
+**[Suggestion to send at the same time]**
 
 ***
-# CCSQLite
+###  CCSQLite
 ***
-目的 : YapDatabase(key/value store) + FMDB
-
 [英文README](README.md)
-
-***
-# 缘由 && 为啥
-***
-当我在写"HSCache [缓存处理方面]", 想选择FMDB或者YapDatabase, 但是他们看起来不一样. 因此想结合YapDatabase(键/值 store) 与 FMDB, 于是 CCSQLite 在路上.
-
-# 引用
-[FMDB](https://github.com/ccgus/fmdb) 
-
-[YapDatabase](https://github.com/yapstudios/YapDatabase)
 
 ***
 # 目的
@@ -39,42 +24,58 @@ Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
 * YapDatabase 键/值 store 
 * CCSQLite 结合 FMDB 和 YapDatabase 键/值 
 
+
+***
+###  目的
+* 转变 FMDB 到 ARC 模式
+* YapDatabase 键/值 store  
+* CCSQLite 结合 FMDB 和 YapDatabase 键/值
+* 支持 OBJECT, JSON 到 键/值
+
 ***
 
-# 大于版本 1.1.1调整变化
 ***
-![HSFont HSFontMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
+# 缘由 && 为啥
+***
+当我在写"HSCache [缓存处理方面]", 想选择FMDB或者YapDatabase, 但是他们看起来不一样. 因此想结合YapDatabase(键/值 store) 与 FMDB, 于是 CCSQLite 在路上.
 
-## Podfile
+
+###  大于版本 1.1.1调整变化
+***
+![CCSQLite CCSQLiteMac Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
+
+###  Podfile
 
 ```ruby
 pod 'CCSQLite'
 ```
 
 ***
-# 用法 && 迁移
-***
 
-[用法 : 类似 FMDB, 只要替换 "FM\*" 成 "CC\*"] (https://github.com/ccgus/fmdb/blob/master/README.markdown)
+### 演示
 
-[更多详细](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/MainAdjust.png?raw=true)
+#### for Objective-C
+##### see CCSQLiteDemo
+##### iOS CCSQLiteiOSDemo
+##### OSX CCSQLiteOSXDemo
 
-***
-# 演示
-### see CCSQLiteDemo/
+### for Swift call Objective-C
+##### iOS CCSQLiteDataiOS
+##### OSX CCSQLiteDatamacOS
 
-### iOS CCSQLiteiOSDemo
-
-### OSX CCSQLiteOSXDemo
-
-# 演示代码 CCSQLiteTest
+### 演示代码
 ```objective-c
 #import <CCSQLite.h>
 ```
-或者
+or
 
 ```objective-c
 #import "CCSQLite.h"
+```
+or
+
+```objective-c
+#import "CCSQLite/CCSQLite.h"
 ```
 
 
@@ -182,7 +183,7 @@ pod 'CCSQLite'
 
 ```
 
-# CCKeyValue 演示代码
+### CCKeyValue 演示代码
 ```objective-c
     CCKeyValue *kv = [CCKeyValue defaultKeyValueWithPath:path];
     kv.valueType = CCKeyValueTypeJson;
@@ -204,13 +205,26 @@ pod 'CCSQLite'
 结果
 ![CCKeyValue Screenshot](https://github.com/ccworld1000/CCSQLite/blob/master/Documentation/CCKeyValue.png?raw=true)
 
+### Swift 调用 Objective-C
 
-# MIT许可证
+```swift
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        CCSQLiteData.writeList()
+        if let list = CCSQLiteData.readList() {
+            print(list)
+        }
+    }
+```
+
+### MIT 许可证
 ***
 
 MIT License
 
-Copyright (c) 2016-2017 ccworld1000 | bug : <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
+Copyright (c) 2016-now ccworld1000 | bug : <a href="mailto:2291108617@qq.com">2291108617@qq.com</a> and <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -231,9 +245,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ***
-# 其他许可证
+### 其他许可证
 ***
 
 [FMDB LICENSE](LICENSE/LICENSE.FMDB.txt) 
 
 [YapDatabase LICENSE](LICENSE/LICENSE.YapDatabase.txt) 
+
