@@ -302,7 +302,6 @@
 				00721FE22015DB45007B4D4E /* Sources */,
 				00721FE32015DB45007B4D4E /* Frameworks */,
 				00721FE42015DB45007B4D4E /* Resources */,
-				C60C9B713427B3562A293691 /* [CP] Embed Pods Frameworks */,
 				6F1FA1914DB461DF731F5A7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -322,7 +321,6 @@
 				00721FF82015DBCC007B4D4E /* Sources */,
 				00721FF92015DBCC007B4D4E /* Frameworks */,
 				00721FFA2015DBCC007B4D4E /* Resources */,
-				E81DF3162817BF46C24F0A25 /* [CP] Embed Pods Frameworks */,
 				4E8D2A21055AA5229C4F53D3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -342,7 +340,6 @@
 				18A796761E5115F300EE610C /* Sources */,
 				18A796771E5115F300EE610C /* Frameworks */,
 				18A796781E5115F300EE610C /* Resources */,
-				B390841755AE9721CCCA4B8E /* [CP] Embed Pods Frameworks */,
 				FA0A92A54DFCC62F527526E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -362,7 +359,6 @@
 				18A796921E51161700EE610C /* Sources */,
 				18A796931E51161700EE610C /* Frameworks */,
 				18A796941E51161700EE610C /* Resources */,
-				CEE234D60F8F4F9D3EAD7837 /* [CP] Embed Pods Frameworks */,
 				9D2BA61E91FB9BEE032D7569 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -531,13 +527,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteDatamacOS/Pods-CCSQLiteDatamacOS-resources.sh",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.CCSQLite.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.FMDB.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.YapDatabase.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.CCSQLite.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.FMDB.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.YapDatabase.txt",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.CCSQLite.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.FMDB.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.YapDatabase.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -551,13 +549,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteDataiOS/Pods-CCSQLiteDataiOS-resources.sh",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.CCSQLite.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.FMDB.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.YapDatabase.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.CCSQLite.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.FMDB.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.YapDatabase.txt",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.CCSQLite.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.FMDB.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.YapDatabase.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -571,77 +571,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteOSXDemo/Pods-CCSQLiteOSXDemo-resources.sh",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.CCSQLite.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.FMDB.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.YapDatabase.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.CCSQLite.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.FMDB.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.YapDatabase.txt",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.CCSQLite.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.FMDB.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.YapDatabase.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteOSXDemo/Pods-CCSQLiteOSXDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B390841755AE9721CCCA4B8E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteiOSDemo/Pods-CCSQLiteiOSDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C60C9B713427B3562A293691 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteDataiOS/Pods-CCSQLiteDataiOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CEE234D60F8F4F9D3EAD7837 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteOSXDemo/Pods-CCSQLiteOSXDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E81DF3162817BF46C24F0A25 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteDatamacOS/Pods-CCSQLiteDatamacOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F86F48C847D2E897278CB843 /* [CP] Check Pods Manifest.lock */ = {
@@ -669,13 +611,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CCSQLiteiOSDemo/Pods-CCSQLiteiOSDemo-resources.sh",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.CCSQLite.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.FMDB.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.YapDatabase.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.CCSQLite.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.FMDB.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.YapDatabase.txt",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.CCSQLite.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.FMDB.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LICENSE.YapDatabase.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
