@@ -8,9 +8,7 @@
 
 ##### bug or suggest
 
-QQ Email ：<a href="mailto:2291108617@qq.com">2291108617@qq.com</a>
 G Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
-**[Suggestion to send at the same time]**
 
 ***
 ###  CCSQLite
