@@ -1709,7 +1709,7 @@ typedef NS_ENUM(int, SqliteValueType) {
 /**
  *  data2Object
  *
- *  @param object object description
+ *  @param data data description
  *
  *  @return return value description
  */
