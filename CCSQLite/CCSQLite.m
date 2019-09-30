@@ -553,11 +553,14 @@ static int connectionBusyHandler(void * ptr, int count) {
 #endif
                                                              if (result) result = [self configureDatabase:isNewDatabaseFile];
                                                              if (result) result = [self createTables];
-
+            
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wimplicit-retain-self"
                                                              if (!result && _db) {
                                                                  sqlite3_close(_db);
                                                                  _db = NULL;
                                                              }
+#pragma clang diagnostic pop
 
                                                              return result;
                                                          } };
