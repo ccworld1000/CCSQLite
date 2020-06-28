@@ -3,6 +3,8 @@
 
 #project 'path/to/Project.xcodeproj'
 
+source 'https://github.com/CocoaPods/Specs.git'
+
 target 'CCSQLiteiOSDemo' do
 	pod 'CCSQLite'
 end

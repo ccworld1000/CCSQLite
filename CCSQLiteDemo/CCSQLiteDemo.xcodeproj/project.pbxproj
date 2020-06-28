@@ -528,9 +528,9 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CCSQLiteDatamacOS/Pods-CCSQLiteDatamacOS-resources.sh",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.CCSQLite.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.FMDB.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.YapDatabase.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.CCSQLite.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.FMDB.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.YapDatabase.txt",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -550,9 +550,9 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CCSQLiteDataiOS/Pods-CCSQLiteDataiOS-resources.sh",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.CCSQLite.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.FMDB.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.YapDatabase.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.CCSQLite.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.FMDB.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.YapDatabase.txt",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -572,9 +572,9 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CCSQLiteOSXDemo/Pods-CCSQLiteOSXDemo-resources.sh",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.CCSQLite.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.FMDB.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.YapDatabase.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.CCSQLite.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.FMDB.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.YapDatabase.txt",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -612,9 +612,9 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CCSQLiteiOSDemo/Pods-CCSQLiteiOSDemo-resources.sh",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.CCSQLite.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.FMDB.txt",
-				"${PODS_ROOT}/../../LICENSE/LICENSE.YapDatabase.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.CCSQLite.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.FMDB.txt",
+				"${PODS_ROOT}/CCSQLite/LICENSE/LICENSE.YapDatabase.txt",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
