@@ -1,17 +1,12 @@
 [![Platform](https://img.shields.io/badge/platforms-iOS%20%7C%20OSX-orange.svg)](https://github.com/ccworld1000/CCSQLite.git)
 [![Languages](https://img.shields.io/badge/languages-ObjC-orange.svg)](https://github.com/ccworld1000/CCSQLite)
-![Swift 3.0.x](https://img.shields.io/badge/Swift-4.0.x-orange.svg)
+![Swift 5.3.0.x](https://img.shields.io/badge/Swift-5.3.0.x-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/CCSQLite.svg)](https://github.com/ccworld1000/CCSQLite.git)
 [![License](https://img.shields.io/cocoapods/l/CCSQLite.svg)](https://github.com/ccworld1000/CCSQLite/blob/master/LICENSE/LICENSE.CCSQLite.txt)
 
 ### CCSQLite A Cocoa / Objective-C wrapper around SQLite. YapDatabase(key/value store) + FMDB.
 
-##### bug or suggest
-
-G Email ： <a href="mailto:ccworld1000@gmail.com">ccworld1000@gmail.com</a>
-
-***
-###  CCSQLite
+###  [CCSQLite](https://github.com/ccworld1000/CCSQLite)
 ***
 [CN README](README.CN.md)
 
